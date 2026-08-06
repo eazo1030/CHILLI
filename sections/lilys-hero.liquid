@@ -13,6 +13,41 @@
 <section class="lc-hero" aria-labelledby="LcHeroHeading-{{ section.id }}">
   <div class="lc-hero__glow lc-hero__glow--one" aria-hidden="true"></div>
   <div class="lc-hero__glow lc-hero__glow--two" aria-hidden="true"></div>
+  <div class="lc-gummy-mascot" data-lc-gummy aria-hidden="true">
+    <svg viewBox="0 0 160 210" role="presentation" focusable="false">
+      <defs>
+        <linearGradient id="LcGummyGradient-{{ section.id }}" x1="18" y1="12" x2="142" y2="194" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#ffef6a"/>
+          <stop offset="0.28" stop-color="#ff9e4f"/>
+          <stop offset="0.58" stop-color="#ff4f87"/>
+          <stop offset="0.82" stop-color="#a855f7"/>
+          <stop offset="1" stop-color="#4cc9f0"/>
+        </linearGradient>
+        <filter id="LcGummyShadow-{{ section.id }}" x="-40%" y="-30%" width="180%" height="190%">
+          <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#17091c" flood-opacity="0.34"/>
+        </filter>
+      </defs>
+      <g fill="url(#LcGummyGradient-{{ section.id }})" fill-opacity="0.9" filter="url(#LcGummyShadow-{{ section.id }})">
+        <circle cx="48" cy="44" r="20"/>
+        <circle cx="112" cy="44" r="20"/>
+        <ellipse cx="80" cy="72" rx="45" ry="42"/>
+        <rect x="44" y="92" width="72" height="76" rx="35"/>
+        <circle cx="39" cy="117" r="22"/>
+        <circle cx="121" cy="117" r="22"/>
+        <rect x="43" y="145" width="31" height="50" rx="15.5"/>
+        <rect x="86" y="145" width="31" height="50" rx="15.5"/>
+      </g>
+      <g fill="#32133e" fill-opacity="0.72">
+        <circle cx="64" cy="69" r="4.5"/>
+        <circle cx="96" cy="69" r="4.5"/>
+        <ellipse cx="80" cy="83" rx="5.5" ry="4.5"/>
+      </g>
+      <path d="M70 91c6 6 14 6 20 0" fill="none" stroke="#32133e" stroke-opacity="0.72" stroke-width="4" stroke-linecap="round"/>
+      <path d="M48 35c9-12 24-17 38-14" fill="none" stroke="#fff" stroke-opacity="0.62" stroke-width="8" stroke-linecap="round"/>
+      <path d="M57 109c9-9 22-13 34-10" fill="none" stroke="#fff" stroke-opacity="0.34" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="108" cy="132" r="7" fill="#fff" fill-opacity="0.22"/>
+    </svg>
+  </div>
   <div class="page-width lc-hero__grid">
     <div class="lc-hero__content">
       {%- if section.settings.eyebrow != blank -%}
@@ -107,7 +142,7 @@
       "type": "richtext",
       "id": "text",
       "label": "Text",
-      "default": "<p>Bold fruit flavor, tangy chamoy and a chili finish that keeps you reaching back into the bag.</p>"
+      "default": "<p>Bold fruit flavor, tangy chamoy, and a warm chili finish that keeps you coming back for another handful.</p>"
     },
     {
       "type": "product",
@@ -134,7 +169,7 @@
       "type": "text",
       "id": "secondary_label",
       "label": "Secondary link label",
-      "default": "Explore the flavors"
+      "default": "Explore every flavor"
     },
     {
       "type": "url",
