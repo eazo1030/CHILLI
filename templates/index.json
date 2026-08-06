@@ -1,63 +1,114 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "lilys_hero": {
+      "type": "lilys-hero",
+      "settings": {
+        "eyebrow": "SWEET • SOUR • SPICY",
+        "heading": "The candy aisle just got <em>hotter.</em>",
+        "text": "<p>Bold fruit flavor, tangy chamoy and a chili finish that keeps you reaching back into the bag.</p>",
+        "product": "chili-sampler",
+        "image": "shopify://shop_images/IMG_4189.jpg",
+        "primary_label": "Shop best sellers",
+        "primary_link": "shopify://collections/new-duo-bundles",
+        "secondary_label": "Explore the flavors",
+        "secondary_link": "#lilys-flavors"
+      }
+    },
+    "lilys_marquee": {
+      "type": "lilys-marquee",
+      "settings": {
+        "text_1": "FREE SHIPPING OVER $50",
+        "text_2": "SAME-DAY SHIPPING",
+        "text_3": "SECURE CHECKOUT",
+        "text_4": "MADE FOR SHARING"
+      }
+    },
+    "lilys_flavor": {
+      "type": "lilys-flavor-showcase",
       "blocks": {
-        "buttons_cJP7bY": {
-          "type": "buttons",
+        "strawberry": {
+          "type": "flavor",
           "settings": {
-            "button_label_1": "",
-            "button_link_1": "shopify://products/chili-gusherz",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "emoji": "🍓",
+            "tag": "BRIGHT + JUICY",
+            "name": "Strawberry",
+            "description": "Classic berry sweetness with a tangy chili finish.",
+            "accent": "#e5392d",
+            "link": "shopify://products/chili-strawberry-belts-two-pack-4oz"
+          }
+        },
+        "watermelon": {
+          "type": "flavor",
+          "settings": {
+            "emoji": "🍉",
+            "tag": "COOL + TANGY",
+            "name": "Watermelon",
+            "description": "Juicy watermelon flavor sharpened with chamoy and spice.",
+            "accent": "#2f7d4a",
+            "link": "shopify://products/chili-watermelon-gummies-two-pack-4oz"
+          }
+        },
+        "cherry": {
+          "type": "flavor",
+          "settings": {
+            "emoji": "🍒",
+            "tag": "DEEP + BOLD",
+            "name": "Cherry",
+            "description": "Dark cherry notes with a slow-building chili warmth.",
+            "accent": "#9f1f35",
+            "link": "shopify://products/chili-cherry-belts-two-4oz-bags"
+          }
+        },
+        "peach": {
+          "type": "flavor",
+          "settings": {
+            "emoji": "🍑",
+            "tag": "SOFT + SUNNY",
+            "name": "Peach",
+            "description": "Mellow peach sweetness with a bright, zesty edge.",
+            "accent": "#e9903d",
+            "link": "shopify://products/chili-peach-gummies-two-pack-4oz"
           }
         }
       },
       "block_order": [
-        "buttons_cJP7bY"
+        "strawberry",
+        "watermelon",
+        "cherry",
+        "peach"
       ],
       "settings": {
-        "image": "shopify://shop_images/gusherz.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "desktop_content_position": "bottom-left",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "image_behavior": "none",
-        "mobile_content_alignment": "left",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "eyebrow": "FIND YOUR FAVORITE",
+        "heading": "Four moods. One unforgettable <em>kick.</em>",
+        "text": "<p>Juicy, tangy and finished with just the right amount of chili. Pick a flavor—or build the full lineup.</p>"
       }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "<strong>CANDY SHOP</strong>",
-        "heading_size": "h2",
-        "description": "",
+        "title": "Best sellers, <em>turned up.</em>",
+        "heading_size": "h1",
+        "description": "<p>Fan favorites for first-timers, loyal snackers and everybody at the party.</p>",
         "show_description": false,
-        "description_style": "subtitle",
+        "description_style": "body",
         "collection": "new-duo-bundles",
-        "products_to_show": 14,
-        "columns_desktop": 2,
+        "products_to_show": 8,
+        "columns_desktop": 4,
         "full_width": false,
-        "show_view_all": false,
-        "view_all_style": "outline",
+        "show_view_all": true,
+        "view_all_style": "solid",
         "enable_desktop_slider": false,
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": false,
-        "enable_quick_add": false,
+        "show_rating": true,
+        "enable_quick_add": true,
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 16,
-        "padding_bottom": 16
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "image_with_text_PgVRwj": {
@@ -66,22 +117,22 @@
         "heading_RT4KNr": {
           "type": "heading",
           "settings": {
-            "heading": "THE CHILI CANDY PLATTER",
+            "heading": "Built for people who like their candy with a point of view.",
             "heading_size": "h1"
           }
         },
         "text_bAK9h7": {
           "type": "text",
           "settings": {
-            "text": "<p>Collection of 6 best flavors ready to share with friends and family!</p>",
+            "text": "<p>Lily's Chilies brings together fruit-forward candy, tangy chamoy and a warm chili finish in one craveable bite. Start with a duo or put the full platter in the middle of the table.</p>",
             "text_style": "body"
           }
         },
         "button_TwreJY": {
           "type": "button",
           "settings": {
-            "button_label": "BUY NOW",
-            "button_link": "https://www.lilyschilies.com/products/chili-sampler",
+            "button_label": "Shop the platter",
+            "button_link": "shopify://products/chili-sampler",
             "button_style_secondary": false
           }
         }
@@ -98,13 +149,51 @@
         "layout": "image_first",
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
-        "content_layout": "overlap",
-        "section_color_scheme": "",
-        "color_scheme": "",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "scheme-2",
         "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "mobile_content_alignment": "left",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "lilys_ritual": {
+      "type": "lilys-ritual",
+      "blocks": {
+        "sweet": {
+          "type": "step",
+          "settings": {
+            "heading": "The sweet",
+            "text": "Big, bright fruit flavor lands first."
+          }
+        },
+        "tang": {
+          "type": "step",
+          "settings": {
+            "heading": "The tang",
+            "text": "Chamoy brings the mouthwatering middle."
+          }
+        },
+        "heat": {
+          "type": "step",
+          "settings": {
+            "heading": "The heat",
+            "text": "A warm chili finish keeps the bite alive."
+          }
+        }
+      },
+      "block_order": [
+        "sweet",
+        "tang",
+        "heat"
+      ],
+      "settings": {
+        "eyebrow": "THE LILY'S EXPERIENCE",
+        "heading": "A three-act flavor story.",
+        "text": "<p>Every bite is built to move—from fruit-forward sweetness to tangy chamoy to a warm chili finish.</p>",
+        "button_label": "Taste the lineup",
+        "button_link": "shopify://collections/new-duo-bundles"
       }
     },
     "17074478967d24ad69": {
@@ -147,140 +236,15 @@
       "settings": {
         "include_margins": true
       }
-    },
-    "lilys_flavor": {
-      "type": "lilys-flavor-showcase",
-      "blocks": {
-        "strawberry": {
-          "type": "flavor",
-          "settings": {
-            "emoji": "\ud83c\udf53",
-            "name": "Strawberry",
-            "description": "Sweet & fruity"
-          }
-        },
-        "watermelon": {
-          "type": "flavor",
-          "settings": {
-            "emoji": "\ud83c\udf49",
-            "name": "Watermelon",
-            "description": "Juicy & tangy"
-          }
-        },
-        "cherry": {
-          "type": "flavor",
-          "settings": {
-            "emoji": "\ud83c\udf52",
-            "name": "Cherry",
-            "description": "Bold & bright"
-          }
-        },
-        "peach": {
-          "type": "flavor",
-          "settings": {
-            "emoji": "\ud83c\udf51",
-            "name": "Peach",
-            "description": "Smooth & mellow"
-          }
-        }
-      },
-      "block_order": [
-        "strawberry",
-        "watermelon",
-        "cherry",
-        "peach"
-      ],
-      "settings": {}
-    },
-    "lilys_marquee": {
-      "type": "lilys-marquee",
-      "settings": {
-        "heading": "FREE SHIPPING OVER $50",
-        "subheading": "SAME-DAY SHIPPING"
-      }
-    },
-    "lilys_tiktok_reviews": {
-      "type": "lilys-tiktok-reviews",
-      "blocks": {
-        "r1": {
-          "type": "review",
-          "settings": {
-            "quote": "I bought these for my kids and now I'M the one eating them in the car. The chili is just enough \u2014 sweet, sour, spicy. Absolute 10/10.",
-            "name": "Maya R.",
-            "initials": "MR",
-            "handle": "@mayareviews"
-          }
-        },
-        "r2": {
-          "type": "review",
-          "settings": {
-            "quote": "The chili strawberry belts are UNREAL. I sent a box to my sister and now she orders them every month. Best gummy candy ever made.",
-            "name": "Dani T.",
-            "initials": "DT",
-            "handle": "@dani.tastes"
-          }
-        },
-        "r3": {
-          "type": "review",
-          "settings": {
-            "quote": "Hosted a party and the candy platter disappeared in 20 minutes. Every flavor was a hit \u2014 the chili peach is dangerous.",
-            "name": "Sam K.",
-            "initials": "SK",
-            "handle": "@sam.snacks"
-          }
-        },
-        "r4": {
-          "type": "review",
-          "settings": {
-            "quote": "I usually don't like super sour stuff but the chamoy hit is perfect. You can taste the real chili. Worth every penny.",
-            "name": "Alex P.",
-            "initials": "AP",
-            "handle": "@alex.p"
-          }
-        },
-        "r5": {
-          "type": "review",
-          "settings": {
-            "quote": "Found this brand on TikTok and I'm hooked. Shipping was fast, packaging was cute, candy is elite. Converted for life.",
-            "name": "Jasmine L.",
-            "initials": "JL",
-            "handle": "@jasmine.l"
-          }
-        },
-        "r6": {
-          "type": "review",
-          "settings": {
-            "quote": "The watermelon gummies are the perfect balance of sweet and spicy. Brought them to my dorm and now everyone is ordering.",
-            "name": "Marcus B.",
-            "initials": "MB",
-            "handle": "@marcusb"
-          }
-        }
-      },
-      "block_order": [
-        "r1",
-        "r2",
-        "r3",
-        "r4",
-        "r5",
-        "r6"
-      ],
-      "settings": {
-        "eyebrow": "As seen on TikTok",
-        "heading": "Fans are <em>obsessed</em>",
-        "subheading": "Real reviews from the Lily\u2019s Chilies community",
-        "cta_label": "Shop the favorites",
-        "cta_link": "shopify://collections/new-duo-bundles"
-      }
     }
   },
   "order": [
-    "image_banner",
-    "lilys_flavor",
+    "lilys_hero",
     "lilys_marquee",
+    "lilys_flavor",
     "featured_collection",
     "image_with_text_PgVRwj",
-    "lilys_tiktok_reviews",
+    "lilys_ritual",
     "17074478967d24ad69",
     "1707447968d1e50687",
     "1707448715ab2fd521",

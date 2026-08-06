@@ -1,0 +1,151 @@
+{%- liquid
+  assign featured_product = section.settings.product
+  assign hero_image = featured_product.featured_media.preview_image | default: section.settings.image
+  assign primary_link = section.settings.primary_link
+  if primary_link == blank and featured_product != blank
+    assign primary_link = featured_product.url
+  endif
+  if primary_link == blank
+    assign primary_link = routes.all_products_collection_url
+  endif
+-%}
+
+<section class="lc-hero" aria-labelledby="LcHeroHeading-{{ section.id }}">
+  <div class="lc-hero__glow lc-hero__glow--one" aria-hidden="true"></div>
+  <div class="lc-hero__glow lc-hero__glow--two" aria-hidden="true"></div>
+  <div class="page-width lc-hero__grid">
+    <div class="lc-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="lc-eyebrow lc-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h1 class="lc-hero__heading" id="LcHeroHeading-{{ section.id }}">
+          {{ section.settings.heading }}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="lc-hero__text rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+
+      <div class="lc-hero__actions">
+        {%- if section.settings.primary_label != blank -%}
+          <a class="button lc-button lc-button--light" href="{{ primary_link }}">
+            {{ section.settings.primary_label | escape }}
+            <span aria-hidden="true">→</span>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.secondary_label != blank -%}
+          <a class="lc-text-link" href="{{ section.settings.secondary_link | default: '#lilys-flavors' }}">
+            {{ section.settings.secondary_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <ul class="lc-hero__notes" role="list" aria-label="Flavor profile">
+        <li><span aria-hidden="true"></span>Sweet</li>
+        <li><span aria-hidden="true"></span>Sour</li>
+        <li><span aria-hidden="true"></span>Spicy</li>
+      </ul>
+    </div>
+
+    <div class="lc-hero__visual">
+      <div class="lc-hero__media">
+        {%- if hero_image != blank -%}
+          {{ hero_image
+            | image_url: width: 1400
+            | image_tag:
+              class: 'lc-hero__image',
+              widths: '480, 720, 960, 1200, 1400',
+              sizes: '(min-width: 990px) 48vw, 92vw',
+              loading: 'eager',
+              fetchpriority: 'high',
+              alt: featured_product.title
+          }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg lc-hero__image' }}
+        {%- endif -%}
+      </div>
+
+      {%- if featured_product != blank -%}
+        <a class="lc-hero__product-card" href="{{ featured_product.url }}">
+          <span class="lc-hero__product-kicker">Featured favorite</span>
+          <span class="lc-hero__product-title">{{ featured_product.title | escape }}</span>
+          <span class="lc-hero__product-price">{{ featured_product.price | money }}</span>
+        </a>
+      {%- endif -%}
+
+      <div class="lc-hero__seal" aria-hidden="true">
+        <span>THE</span>
+        <strong>SWEET<br>HEAT</strong>
+        <span>EXPERIENCE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lily's premium hero",
+  "tag": "section",
+  "class": "section section--lilys-hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "SWEET • SOUR • SPICY"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The candy aisle just got <em>hotter.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Bold fruit flavor, tangy chamoy and a chili finish that keeps you reaching back into the bag.</p>"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Featured product"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Fallback image"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Shop best sellers"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary link label",
+      "default": "Explore the flavors"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lily's premium hero"
+    }
+  ]
+}
+{% endschema %}

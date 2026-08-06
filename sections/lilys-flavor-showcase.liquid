@@ -1,43 +1,88 @@
-<div class="lilys-flavor section section--lilys-flavor">
+<section class="lc-flavors" id="lilys-flavors" aria-labelledby="LcFlavorsHeading-{{ section.id }}">
   <div class="page-width">
-    <div class="lilys-flavor__inner lilys-reveal-stagger">
+    <div class="lc-section-heading lc-section-heading--split">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="lc-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 id="LcFlavorsHeading-{{ section.id }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.text != blank -%}
+        <div class="lc-section-heading__text rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="lc-flavors__grid">
       {%- for block in section.blocks -%}
-        <article class="lilys-flavor-card" {{ block.shopify_attributes }}>
-          <span class="lilys-flavor-card__emoji" aria-hidden="true">{{ block.settings.emoji }}</span>
-          <h3 class="lilys-flavor-card__name">{{ block.settings.name | escape }}</h3>
-          <p class="lilys-flavor-card__desc">{{ block.settings.description | escape }}</p>
+        <article class="lc-flavor-card" style="--lc-flavor: {{ block.settings.accent }};" {{ block.shopify_attributes }}>
+          <div class="lc-flavor-card__topline">
+            <span class="lc-flavor-card__number">0{{ forloop.index }}</span>
+            <span class="lc-flavor-card__icon" aria-hidden="true">{{ block.settings.emoji }}</span>
+          </div>
+          <p class="lc-flavor-card__tag">{{ block.settings.tag | escape }}</p>
+          <h3>{{ block.settings.name | escape }}</h3>
+          <p>{{ block.settings.description | escape }}</p>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="lc-flavor-card__link">
+              Shop {{ block.settings.name | escape }} <span aria-hidden="true">↗</span>
+            </a>
+          {%- endif -%}
         </article>
       {%- endfor -%}
     </div>
   </div>
-</div>
+</section>
 
 {% schema %}
 {
-  "name": "Flavor showcase",
+  "name": "Flavor collection",
   "tag": "section",
   "class": "section section--lilys-flavor",
   "max_blocks": 4,
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "FIND YOUR FAVORITE"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Four moods. One unforgettable <em>kick.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Juicy, tangy and finished with just the right amount of chili. Pick a flavor—or build the full lineup.</p>"
+    }
+  ],
   "blocks": [
     {
       "type": "flavor",
       "name": "Flavor",
       "settings": [
-        { "type": "text", "id": "emoji", "label": "Emoji", "default": "🍓" },
+        { "type": "text", "id": "emoji", "label": "Icon", "default": "🍓" },
+        { "type": "text", "id": "tag", "label": "Flavor note", "default": "BRIGHT + JUICY" },
         { "type": "text", "id": "name", "label": "Name", "default": "Strawberry" },
-        { "type": "text", "id": "description", "label": "Description", "default": "Sweet & fruity" }
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Classic berry sweetness with a tangy chili finish." },
+        { "type": "color", "id": "accent", "label": "Accent color", "default": "#e5392d" },
+        { "type": "url", "id": "link", "label": "Product link" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Flavor showcase",
+      "name": "Flavor collection",
       "blocks": [
-        { "type": "flavor", "settings": { "emoji": "🍓", "name": "Strawberry", "description": "Sweet & fruity" } },
-        { "type": "flavor", "settings": { "emoji": "🍉", "name": "Watermelon", "description": "Juicy & tangy" } },
-        { "type": "flavor", "settings": { "emoji": "🍒", "name": "Cherry", "description": "Bold & bright" } },
-        { "type": "flavor", "settings": { "emoji": "🍑", "name": "Peach", "description": "Smooth & mellow" } }
+        { "type": "flavor", "settings": { "emoji": "🍓", "tag": "BRIGHT + JUICY", "name": "Strawberry", "description": "Classic berry sweetness with a tangy chili finish.", "accent": "#e5392d" } },
+        { "type": "flavor", "settings": { "emoji": "🍉", "tag": "COOL + TANGY", "name": "Watermelon", "description": "Juicy watermelon flavor sharpened with chamoy and spice.", "accent": "#2f7d4a" } },
+        { "type": "flavor", "settings": { "emoji": "🍒", "tag": "DEEP + BOLD", "name": "Cherry", "description": "Dark cherry notes with a slow-building chili warmth.", "accent": "#9f1f35" } },
+        { "type": "flavor", "settings": { "emoji": "🍑", "tag": "SOFT + SUNNY", "name": "Peach", "description": "Mellow peach sweetness with a bright, zesty edge.", "accent": "#e9903d" } }
       ]
     }
   ]
