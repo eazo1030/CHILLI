@@ -28,7 +28,12 @@ html { scroll-behavior: smooth; }
 body {
   overflow-x: clip;
   color: var(--lc-ink-soft);
-  background: var(--lc-cream);
+  background:
+    radial-gradient(circle at 4% 8%, rgba(230, 59, 46, 0.14), transparent 30rem),
+    radial-gradient(circle at 96% 18%, rgba(244, 183, 64, 0.2), transparent 36rem),
+    radial-gradient(circle at 12% 72%, rgba(86, 114, 74, 0.12), transparent 42rem),
+    radial-gradient(circle at 88% 88%, rgba(191, 64, 112, 0.12), transparent 38rem),
+    linear-gradient(180deg, #fff8ee 0%, #fff0e6 36%, #f7f7df 70%, #fff7ee 100%);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -267,8 +272,9 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 
 .lc-hero {
   background:
-    radial-gradient(circle at 16% 12%, rgba(244, 183, 64, 0.18), transparent 32%),
-    radial-gradient(circle at 84% 86%, rgba(230, 59, 46, 0.2), transparent 34%),
+    radial-gradient(circle at 16% 12%, rgba(244, 183, 64, 0.3), transparent 34%),
+    radial-gradient(circle at 84% 82%, rgba(230, 59, 46, 0.3), transparent 36%),
+    radial-gradient(circle at 52% 108%, rgba(191, 64, 112, 0.22), transparent 38%),
     var(--lc-ink);
   color: rgba(255, 248, 238, 0.78);
   isolation: isolate;
@@ -588,8 +594,10 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 
 .lc-flavors {
   background:
-    radial-gradient(circle at 100% 0, rgba(244, 183, 64, 0.16), transparent 30%),
-    var(--lc-cream);
+    radial-gradient(circle at 4% 20%, rgba(230, 59, 46, 0.16), transparent 28%),
+    radial-gradient(circle at 96% 8%, rgba(244, 183, 64, 0.28), transparent 30%),
+    radial-gradient(circle at 84% 92%, rgba(86, 114, 74, 0.16), transparent 32%),
+    linear-gradient(135deg, #fff4df 0%, #ffe9eb 48%, #f1f5dc 100%);
   padding: clamp(8rem, 10vw, 13rem) 0;
 }
 
@@ -696,7 +704,10 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
    Featured collection and product cards
    ========================================================================== */
 .template-index .collection {
-  background: var(--lc-paper);
+  background:
+    radial-gradient(circle at 8% 18%, rgba(191, 64, 112, 0.12), transparent 28rem),
+    radial-gradient(circle at 92% 84%, rgba(244, 183, 64, 0.2), transparent 34rem),
+    linear-gradient(160deg, #fffdf8 0%, #fff1e7 52%, #fff8dc 100%);
   padding-bottom: clamp(8rem, 10vw, 13rem) !important;
   padding-top: clamp(8rem, 10vw, 13rem) !important;
 }
@@ -800,7 +811,9 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
    Editorial image with text
    ========================================================================== */
 .template-index .image-with-text {
-  background: var(--lc-sand);
+  background:
+    radial-gradient(circle at 92% 12%, rgba(230, 59, 46, 0.14), transparent 26%),
+    linear-gradient(135deg, #f2d5bd 0%, #f6e5a9 48%, #dfe9cf 100%);
   border-radius: var(--lc-radius-lg);
   overflow: hidden;
 }
@@ -840,7 +853,9 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 
 .lc-ritual {
   background:
-    radial-gradient(circle at 10% 90%, rgba(230, 59, 46, 0.2), transparent 30%),
+    radial-gradient(circle at 10% 90%, rgba(230, 59, 46, 0.32), transparent 32%),
+    radial-gradient(circle at 94% 8%, rgba(244, 183, 64, 0.2), transparent 30%),
+    radial-gradient(circle at 72% 96%, rgba(191, 64, 112, 0.18), transparent 28%),
     var(--lc-cocoa);
   color: rgba(255, 248, 238, 0.72);
   padding: clamp(8rem, 11vw, 14rem) 0;
@@ -984,7 +999,10 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
    Footer
    ========================================================================== */
 .footer {
-  background: var(--lc-ink);
+  background:
+    radial-gradient(circle at 8% 10%, rgba(230, 59, 46, 0.2), transparent 30%),
+    radial-gradient(circle at 92% 100%, rgba(244, 183, 64, 0.13), transparent 34%),
+    linear-gradient(145deg, #25120f 0%, #35151c 52%, #2e2112 100%);
   border-top: 0;
   color: rgba(255, 248, 238, 0.72);
   position: relative;
