@@ -355,32 +355,6 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   padding: clamp(3rem, 4vw, 5.6rem);
 }
 
-.lc-gummy-mascot {
-  --lc-gummy-opacity: 0.95;
-  --lc-gummy-rotate: -9deg;
-  --lc-gummy-x: 0px;
-  --lc-gummy-y: 0px;
-  filter: saturate(1.12);
-  left: 47%;
-  opacity: var(--lc-gummy-opacity);
-  pointer-events: none;
-  position: absolute;
-  top: clamp(5.5rem, 10vh, 10rem);
-  transform: translate3d(var(--lc-gummy-x), var(--lc-gummy-y), 0) rotate(var(--lc-gummy-rotate));
-  transform-origin: 50% 42%;
-  transition: opacity 120ms linear;
-  width: clamp(8rem, 8.5vw, 13rem);
-  will-change: transform;
-  z-index: 4;
-}
-
-.lc-gummy-mascot svg {
-  display: block;
-  height: auto;
-  overflow: visible;
-  width: 100%;
-}
-
 .lc-eyebrow {
   color: var(--lc-chili);
   font-size: 1.15rem;
@@ -603,8 +577,181 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
    Promise bar
    ========================================================================== */
 .lc-promise-bar {
+  --lc-logo-green: #40b048;
+  --lc-logo-green-dark: #21933a;
+  --lc-logo-green-light: #78d77d;
+  --lc-logo-outline: #111d12;
+  --lc-logo-red: #d82830;
   background: var(--lc-chili);
   color: #fff;
+  isolation: isolate;
+  position: relative;
+  z-index: 3;
+}
+
+.lc-gummy-runway {
+  bottom: calc(100% - 0.5rem);
+  height: clamp(7rem, 7.5vw, 10rem);
+  inset-inline: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 4;
+}
+
+.lc-gummy-runner {
+  animation: lc-gummy-run-across 9s linear infinite;
+  animation-delay: -1.4s;
+  bottom: -0.2rem;
+  isolation: isolate;
+  left: 0;
+  position: absolute;
+  width: clamp(9rem, 9vw, 13rem);
+  will-change: transform;
+  z-index: 0;
+}
+
+.lc-gummy-runner::after {
+  background: rgba(25, 12, 13, 0.24);
+  border-radius: 50%;
+  bottom: 0.1rem;
+  content: "";
+  filter: blur(0.3rem);
+  height: 0.8rem;
+  left: 2.5rem;
+  position: absolute;
+  width: 5.5rem;
+  z-index: -1;
+}
+
+.lc-gummy-runner svg {
+  display: block;
+  height: auto;
+  overflow: visible;
+  width: 100%;
+}
+
+.lc-gummy-runner__figure {
+  animation: lc-gummy-runner-bob 340ms ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.lc-gummy-runner__body,
+.lc-gummy-runner__head,
+.lc-gummy-runner__ear,
+.lc-gummy-runner__paw,
+.lc-gummy-runner__leg rect {
+  fill: var(--lc-logo-green);
+  stroke: var(--lc-logo-outline);
+  stroke-linejoin: round;
+  stroke-width: 5;
+}
+
+.lc-gummy-runner__belly,
+.lc-gummy-runner__muzzle {
+  fill: var(--lc-logo-green-light);
+  fill-opacity: 0.78;
+  stroke: var(--lc-logo-outline);
+  stroke-width: 4;
+}
+
+.lc-gummy-runner__arm-outline,
+.lc-gummy-runner__arm {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lc-gummy-runner__arm-outline {
+  stroke: var(--lc-logo-outline);
+  stroke-width: 18;
+}
+
+.lc-gummy-runner__arm {
+  stroke: var(--lc-logo-green);
+  stroke-width: 11;
+}
+
+.lc-gummy-runner__chili {
+  animation: lc-gummy-chili-sway 420ms ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: 20% 55%;
+}
+
+.lc-gummy-runner__chili-stem {
+  fill: none;
+  stroke: var(--lc-logo-green-dark);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 8;
+}
+
+.lc-gummy-runner__chili-body {
+  fill: var(--lc-logo-red);
+  stroke: var(--lc-logo-outline);
+  stroke-linejoin: round;
+  stroke-width: 5;
+}
+
+.lc-gummy-runner__chili-shine {
+  fill: none;
+  opacity: 0.72;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-width: 4;
+}
+
+.lc-gummy-runner__eye-white {
+  fill: #fff;
+  stroke: var(--lc-logo-outline);
+  stroke-width: 3;
+}
+
+.lc-gummy-runner__eye,
+.lc-gummy-runner__nose { fill: var(--lc-logo-outline); }
+
+.lc-gummy-runner__smile {
+  fill: none;
+  stroke: var(--lc-logo-outline);
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.lc-gummy-runner__shine {
+  fill: none;
+  opacity: 0.5;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+.lc-gummy-runner__leg {
+  animation: lc-gummy-leg-stride 320ms ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: 50% 10%;
+}
+
+.lc-gummy-runner__leg--front { animation-direction: alternate-reverse; }
+
+@keyframes lc-gummy-run-across {
+  from { transform: translate3d(-130%, 0, 0); }
+  to { transform: translate3d(calc(100vw + 130%), 0, 0); }
+}
+
+@keyframes lc-gummy-runner-bob {
+  from { transform: translateY(0) rotate(-1deg); }
+  to { transform: translateY(-0.45rem) rotate(1deg); }
+}
+
+@keyframes lc-gummy-leg-stride {
+  from { transform: rotate(24deg); }
+  to { transform: rotate(-26deg); }
+}
+
+@keyframes lc-gummy-chili-sway {
+  from { transform: rotate(-4deg); }
+  to { transform: rotate(5deg); }
 }
 
 .lc-promise-bar__list {
@@ -1158,8 +1305,6 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   .lc-hero__content { max-width: 70rem; }
   .lc-hero__heading { max-width: 9ch; }
   .lc-hero__visual { justify-self: center; max-width: 62rem; }
-  .lc-gummy-mascot { left: auto; right: 4vw; top: 44%; }
-
   .lc-promise-bar__list { grid-template-columns: repeat(2, 1fr); }
   .lc-promise-bar__list li:nth-child(2) { border-right: 0; }
   .lc-promise-bar__list li:nth-child(-n + 2) { border-bottom: 1px solid rgba(255, 255, 255, 0.22); }
@@ -1191,7 +1336,8 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   .lc-hero__product-card { bottom: -4rem; left: 1.5rem; max-width: min(25rem, 70vw); }
   .lc-hero__seal { height: 9.5rem; right: -1rem; top: -2.5rem; }
   .lc-hero__seal strong { font-size: 1.3rem; }
-  .lc-gummy-mascot { right: 1rem; top: 47%; width: 7rem; }
+  .lc-gummy-runway { height: 7rem; }
+  .lc-gummy-runner { animation-duration: 6s; width: 9rem; }
 
   .lc-promise-bar__list li { font-size: 0.95rem; min-height: 5.8rem; }
   .lc-promise-bar__list svg { display: none; }
@@ -1236,5 +1382,12 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
-  .lc-gummy-mascot { transform: rotate(-9deg); }
+  .lc-gummy-runner {
+    animation: none !important;
+    left: 2rem;
+    transform: none;
+  }
+  .lc-gummy-runner__figure,
+  .lc-gummy-runner__leg,
+  .lc-gummy-runner__chili { animation: none !important; transform: none; }
 }

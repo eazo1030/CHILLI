@@ -1,5 +1,49 @@
 {%- if section.settings.text_1 != blank or section.settings.text_2 != blank or section.settings.text_3 != blank or section.settings.text_4 != blank -%}
   <aside class="lc-promise-bar" aria-label="Store promises">
+    <div class="lc-gummy-runway" aria-hidden="true">
+      <div class="lc-gummy-runner">
+        <svg viewBox="0 0 200 140" role="presentation" focusable="false" aria-hidden="true">
+          <defs>
+            <filter id="LcRunnerShadow-{{ section.id }}" x="-30%" y="-35%" width="175%" height="205%">
+              <feDropShadow dx="0" dy="7" stdDeviation="5" flood-color="#19100d" flood-opacity="0.28"/>
+            </filter>
+          </defs>
+          <g class="lc-gummy-runner__figure" filter="url(#LcRunnerShadow-{{ section.id }})">
+            <g class="lc-gummy-runner__leg lc-gummy-runner__leg--back">
+              <rect x="54" y="91" width="27" height="38" rx="13.5"/>
+            </g>
+            <g class="lc-gummy-runner__leg lc-gummy-runner__leg--front">
+              <rect x="92" y="91" width="27" height="38" rx="13.5"/>
+            </g>
+
+            <g class="lc-gummy-runner__chili">
+              <path class="lc-gummy-runner__chili-stem" d="M157 48c2-10 9-17 20-18-5 4-7 9-7 15"/>
+              <path class="lc-gummy-runner__chili-body" d="M154 47c18-2 31 10 29 27-2 18-17 34-37 36 8-10 11-20 8-31-3-12-9-24 0-32Z"/>
+              <path class="lc-gummy-runner__chili-shine" d="M164 56c7 1 11 6 11 13"/>
+            </g>
+
+            <ellipse class="lc-gummy-runner__body" cx="87" cy="78" rx="43" ry="37"/>
+            <ellipse class="lc-gummy-runner__belly" cx="91" cy="83" rx="25" ry="23"/>
+            <circle class="lc-gummy-runner__ear" cx="96" cy="25" r="13"/>
+            <circle class="lc-gummy-runner__ear" cx="128" cy="24" r="12"/>
+            <circle class="lc-gummy-runner__head" cx="116" cy="49" r="32"/>
+            <ellipse class="lc-gummy-runner__muzzle" cx="136" cy="58" rx="17" ry="13"/>
+
+            <path class="lc-gummy-runner__arm-outline" d="M69 68C56 71 48 79 43 89"/>
+            <path class="lc-gummy-runner__arm" d="M69 68C56 71 48 79 43 89"/>
+            <path class="lc-gummy-runner__arm-outline" d="M111 72c14 4 25 12 40 13"/>
+            <path class="lc-gummy-runner__arm" d="M111 72c14 4 25 12 40 13"/>
+            <circle class="lc-gummy-runner__paw" cx="151" cy="85" r="8"/>
+
+            <ellipse class="lc-gummy-runner__eye-white" cx="127" cy="43" rx="6.5" ry="7.5"/>
+            <circle class="lc-gummy-runner__eye" cx="130" cy="45" r="3"/>
+            <ellipse class="lc-gummy-runner__nose" cx="150" cy="57" rx="5" ry="4"/>
+            <path class="lc-gummy-runner__smile" d="M142 65c4 4 8 4 12 1"/>
+            <path class="lc-gummy-runner__shine" d="M100 35c8-8 19-9 27-5"/>
+          </g>
+        </svg>
+      </div>
+    </div>
     <div class="page-width">
       <ul class="lc-promise-bar__list" role="list">
         {%- for i in (1..4) -%}
