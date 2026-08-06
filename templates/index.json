@@ -1,0 +1,289 @@
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "buttons_cJP7bY": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "",
+            "button_link_1": "shopify://products/chili-gusherz",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "buttons_cJP7bY"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/gusherz.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "desktop_content_position": "bottom-left",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "<strong>CANDY SHOP</strong>",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "subtitle",
+        "collection": "new-duo-bundles",
+        "products_to_show": 14,
+        "columns_desktop": 2,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "outline",
+        "enable_desktop_slider": false,
+        "color_scheme": "scheme-2",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "image_with_text_PgVRwj": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_RT4KNr": {
+          "type": "heading",
+          "settings": {
+            "heading": "THE CHILI CANDY PLATTER",
+            "heading_size": "h1"
+          }
+        },
+        "text_bAK9h7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Collection of 6 best flavors ready to share with friends and family!</p>",
+            "text_style": "body"
+          }
+        },
+        "button_TwreJY": {
+          "type": "button",
+          "settings": {
+            "button_label": "BUY NOW",
+            "button_link": "https://www.lilyschilies.com/products/chili-sampler",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_RT4KNr",
+        "text_bAK9h7",
+        "button_TwreJY"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/IMG_4189.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "17074478967d24ad69": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1707447968d1e50687": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1707448715ab2fd521": {
+      "type": "apps",
+      "blocks": {
+        "stamped_product_reviews_ugc_main_widget_mbHQik": {
+          "type": "shopify://apps/stamped-reviews/blocks/main-widget/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "animation": true,
+            "tags_exclude": "",
+            "tags_include": "",
+            "search": "",
+            "linkify": true,
+            "use_metafields": false,
+            "sku_tagtype": "sku"
+          }
+        }
+      },
+      "block_order": [
+        "stamped_product_reviews_ugc_main_widget_mbHQik"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "170746486692797dcc": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "lilys_flavor": {
+      "type": "lilys-flavor-showcase",
+      "blocks": {
+        "strawberry": {
+          "type": "flavor",
+          "settings": {
+            "emoji": "\ud83c\udf53",
+            "name": "Strawberry",
+            "description": "Sweet & fruity"
+          }
+        },
+        "watermelon": {
+          "type": "flavor",
+          "settings": {
+            "emoji": "\ud83c\udf49",
+            "name": "Watermelon",
+            "description": "Juicy & tangy"
+          }
+        },
+        "cherry": {
+          "type": "flavor",
+          "settings": {
+            "emoji": "\ud83c\udf52",
+            "name": "Cherry",
+            "description": "Bold & bright"
+          }
+        },
+        "peach": {
+          "type": "flavor",
+          "settings": {
+            "emoji": "\ud83c\udf51",
+            "name": "Peach",
+            "description": "Smooth & mellow"
+          }
+        }
+      },
+      "block_order": [
+        "strawberry",
+        "watermelon",
+        "cherry",
+        "peach"
+      ],
+      "settings": {}
+    },
+    "lilys_marquee": {
+      "type": "lilys-marquee",
+      "settings": {
+        "heading": "FREE SHIPPING OVER $50",
+        "subheading": "SAME-DAY SHIPPING"
+      }
+    },
+    "lilys_tiktok_reviews": {
+      "type": "lilys-tiktok-reviews",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "quote": "I bought these for my kids and now I'M the one eating them in the car. The chili is just enough \u2014 sweet, sour, spicy. Absolute 10/10.",
+            "name": "Maya R.",
+            "initials": "MR",
+            "handle": "@mayareviews"
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "quote": "The chili strawberry belts are UNREAL. I sent a box to my sister and now she orders them every month. Best gummy candy ever made.",
+            "name": "Dani T.",
+            "initials": "DT",
+            "handle": "@dani.tastes"
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "quote": "Hosted a party and the candy platter disappeared in 20 minutes. Every flavor was a hit \u2014 the chili peach is dangerous.",
+            "name": "Sam K.",
+            "initials": "SK",
+            "handle": "@sam.snacks"
+          }
+        },
+        "r4": {
+          "type": "review",
+          "settings": {
+            "quote": "I usually don't like super sour stuff but the chamoy hit is perfect. You can taste the real chili. Worth every penny.",
+            "name": "Alex P.",
+            "initials": "AP",
+            "handle": "@alex.p"
+          }
+        },
+        "r5": {
+          "type": "review",
+          "settings": {
+            "quote": "Found this brand on TikTok and I'm hooked. Shipping was fast, packaging was cute, candy is elite. Converted for life.",
+            "name": "Jasmine L.",
+            "initials": "JL",
+            "handle": "@jasmine.l"
+          }
+        },
+        "r6": {
+          "type": "review",
+          "settings": {
+            "quote": "The watermelon gummies are the perfect balance of sweet and spicy. Brought them to my dorm and now everyone is ordering.",
+            "name": "Marcus B.",
+            "initials": "MB",
+            "handle": "@marcusb"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ],
+      "settings": {
+        "eyebrow": "As seen on TikTok",
+        "heading": "Fans are <em>obsessed</em>",
+        "subheading": "Real reviews from the Lily\u2019s Chilies community",
+        "cta_label": "Shop the favorites",
+        "cta_link": "shopify://collections/new-duo-bundles"
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "lilys_flavor",
+    "lilys_marquee",
+    "featured_collection",
+    "image_with_text_PgVRwj",
+    "lilys_tiktok_reviews",
+    "17074478967d24ad69",
+    "1707447968d1e50687",
+    "1707448715ab2fd521",
+    "170746486692797dcc"
+  ]
+}

@@ -1,0 +1,356 @@
+{% doc %}
+  @prompt
+    add a fun notes section, I meant a checkout note or order comment section
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-cart-note-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-cart-note-container-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: 24px;
+    border: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-cart-note-header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .ai-cart-note-icon-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .ai-cart-note-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke: {{ block.settings.icon_color }};
+  }
+
+  .ai-cart-note-label-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.label_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-cart-note-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+    margin-bottom: 12px;
+  }
+
+  .ai-cart-note-textarea-{{ ai_gen_id }} {
+    width: 100%;
+    min-height: {{ block.settings.textarea_height }}px;
+    padding: 12px;
+    border: 1px solid {{ block.settings.input_border_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    background-color: {{ block.settings.input_background_color }};
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-cart-note-textarea-{{ ai_gen_id }}:focus {
+    outline: none;
+    border-color: {{ block.settings.input_focus_border_color }};
+    box-shadow: 0 0 0 2px {{ block.settings.input_focus_border_color }}33;
+  }
+
+  .ai-cart-note-textarea-{{ ai_gen_id }}::placeholder {
+    color: {{ block.settings.text_color }};
+    opacity: 0.5;
+  }
+
+  .ai-cart-note-char-count-{{ ai_gen_id }} {
+    text-align: right;
+    font-size: 12px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.6;
+    margin-top: 6px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-cart-note-container-{{ ai_gen_id }} {
+      padding: 20px;
+    }
+  }
+{% endstyle %}
+
+<cart-note-{{ ai_gen_id }} class="ai-cart-note-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-cart-note-container-{{ ai_gen_id }}">
+    <div class="ai-cart-note-header-{{ ai_gen_id }}">
+      <div class="ai-cart-note-icon-{{ ai_gen_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+      </div>
+      {% if block.settings.label != blank %}
+        <h3 class="ai-cart-note-label-{{ ai_gen_id }}">{{ block.settings.label }}</h3>
+      {% endif %}
+    </div>
+
+    {% if block.settings.description != blank %}
+      <div class="ai-cart-note-description-{{ ai_gen_id }}">
+        {{ block.settings.description }}
+      </div>
+    {% endif %}
+
+    <textarea
+      class="ai-cart-note-textarea-{{ ai_gen_id }}"
+      name="note"
+      id="cart-note-{{ ai_gen_id }}"
+      placeholder="{{ block.settings.placeholder }}"
+      {% if block.settings.max_characters > 0 %}maxlength="{{ block.settings.max_characters }}"{% endif %}
+      data-cart-note
+    >{{ cart.note }}</textarea>
+
+    {% if block.settings.show_character_count and block.settings.max_characters > 0 %}
+      <div class="ai-cart-note-char-count-{{ ai_gen_id }}">
+        <span data-char-current>{{ cart.note | size }}</span> / {{ block.settings.max_characters }}
+      </div>
+    {% endif %}
+  </div>
+</cart-note-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CartNote{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.textarea = null;
+        this.charCount = null;
+        this.debounceTimer = null;
+      }
+
+      connectedCallback() {
+        this.textarea = this.querySelector('[data-cart-note]');
+        this.charCount = this.querySelector('[data-char-current]');
+
+        if (this.textarea) {
+          this.textarea.addEventListener('input', this.handleInput.bind(this));
+          this.textarea.addEventListener('change', this.updateCartNote.bind(this));
+        }
+      }
+
+      handleInput(event) {
+        if (this.charCount) {
+          this.charCount.textContent = event.target.value.length;
+        }
+
+        clearTimeout(this.debounceTimer);
+        this.debounceTimer = setTimeout(() => {
+          this.updateCartNote();
+        }, 1000);
+      }
+
+      updateCartNote() {
+        if (!this.textarea) return;
+
+        const note = this.textarea.value;
+
+        fetch('/cart/update.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ note: note })
+        })
+        .then(response => response.json())
+        .catch(error => {
+          console.error('Error updating cart note:', error);
+        });
+      }
+
+      disconnectedCallback() {
+        if (this.textarea) {
+          this.textarea.removeEventListener('input', this.handleInput.bind(this));
+          this.textarea.removeEventListener('change', this.updateCartNote.bind(this));
+        }
+        clearTimeout(this.debounceTimer);
+      }
+    }
+
+    customElements.define('cart-note-{{ ai_gen_id }}', CartNote{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Order note",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "label",
+      "label": "Label",
+      "default": "Add a note to your order"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "Special instructions, gift message, or delivery notes"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder text",
+      "default": "How can we help you?"
+    },
+    {
+      "type": "range",
+      "id": "max_characters",
+      "label": "Maximum characters",
+      "min": 0,
+      "max": 500,
+      "step": 50,
+      "default": 250,
+      "info": "Set to 0 for unlimited"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_character_count",
+      "label": "Show character count",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Text area"
+    },
+    {
+      "type": "range",
+      "id": "textarea_height",
+      "label": "Height",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "input_background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Border color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_border_color",
+      "label": "Focus border color",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "label": "Label size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Order note"
+    }
+  ]
+}
+{% endschema %}

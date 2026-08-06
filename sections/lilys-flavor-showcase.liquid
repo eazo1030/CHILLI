@@ -1,0 +1,45 @@
+<div class="lilys-flavor section section--lilys-flavor">
+  <div class="page-width">
+    <div class="lilys-flavor__inner lilys-reveal-stagger">
+      {%- for block in section.blocks -%}
+        <article class="lilys-flavor-card" {{ block.shopify_attributes }}>
+          <span class="lilys-flavor-card__emoji" aria-hidden="true">{{ block.settings.emoji }}</span>
+          <h3 class="lilys-flavor-card__name">{{ block.settings.name | escape }}</h3>
+          <p class="lilys-flavor-card__desc">{{ block.settings.description | escape }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flavor showcase",
+  "tag": "section",
+  "class": "section section--lilys-flavor",
+  "max_blocks": 4,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "flavor",
+      "name": "Flavor",
+      "settings": [
+        { "type": "text", "id": "emoji", "label": "Emoji", "default": "🍓" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Strawberry" },
+        { "type": "text", "id": "description", "label": "Description", "default": "Sweet & fruity" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flavor showcase",
+      "blocks": [
+        { "type": "flavor", "settings": { "emoji": "🍓", "name": "Strawberry", "description": "Sweet & fruity" } },
+        { "type": "flavor", "settings": { "emoji": "🍉", "name": "Watermelon", "description": "Juicy & tangy" } },
+        { "type": "flavor", "settings": { "emoji": "🍒", "name": "Cherry", "description": "Bold & bright" } },
+        { "type": "flavor", "settings": { "emoji": "🍑", "name": "Peach", "description": "Smooth & mellow" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
