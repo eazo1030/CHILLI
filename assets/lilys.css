@@ -580,8 +580,8 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 /* ==========================================================================
    Promise bar
    ========================================================================== */
-.section--lilys-marquee {
-  margin-top: clamp(-4rem, -3vw, -2.2rem);
+.section + .section.section--lilys-marquee {
+  margin-top: 0;
   position: relative;
   z-index: 2;
 }
