@@ -25,62 +25,16 @@
     },
     "lilys_flavor": {
       "type": "lilys-flavor-showcase",
-      "blocks": {
-        "strawberry": {
-          "type": "flavor",
-          "settings": {
-            "emoji": "🍓",
-            "tag": "BRIGHT + JUICY",
-            "name": "Strawberry",
-            "description": "Chewy strawberry belts coated with tangy chamoy and a mild chili finish.",
-            "accent": "#e5392d",
-            "link": "shopify://products/chili-strawberry-belts-two-pack-4oz"
-          }
-        },
-        "watermelon": {
-          "type": "flavor",
-          "settings": {
-            "emoji": "🍉",
-            "tag": "COOL + TANGY",
-            "name": "Watermelon",
-            "description": "Juicy watermelon gummies with tangy chamoy and just enough chili.",
-            "accent": "#2f7d4a",
-            "link": "shopify://products/chili-watermelon-gummies-two-pack-4oz"
-          }
-        },
-        "cherry": {
-          "type": "flavor",
-          "settings": {
-            "emoji": "🍒",
-            "tag": "DEEP + BOLD",
-            "name": "Cherry",
-            "description": "Tart cherry belts with a bold fruit flavor and a gentle chili warmth.",
-            "accent": "#9f1f35",
-            "link": "shopify://products/chili-cherry-belts-two-4oz-bags"
-          }
-        },
-        "peach": {
-          "type": "flavor",
-          "settings": {
-            "emoji": "🍑",
-            "tag": "SOFT + SUNNY",
-            "name": "Peach",
-            "description": "Soft peach gummies with bright chamoy tang and a mild chili kick.",
-            "accent": "#e9903d",
-            "link": "shopify://products/chili-peach-gummies-two-pack-4oz"
-          }
-        }
-      },
-      "block_order": [
-        "strawberry",
-        "watermelon",
-        "cherry",
-        "peach"
-      ],
       "settings": {
         "eyebrow": "FIND YOUR FAVORITE",
-        "heading": "Four flavors. One unforgettable <em>kick.</em>",
-        "text": "<p>Juicy, tangy, and finished with just the right amount of chili. Pick your favorite, or try all four.</p>"
+        "heading": "Every sweet-heat craving, <em>sorted.</em>",
+        "text": "<p>Explore all of Lily's Chilies—from gummies and belts to fruit favorites, platters, and bulk packs.</p>",
+        "collection": "all",
+        "initial_limit": 8,
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_rating": true,
+        "enable_quick_add": true
       }
     },
     "featured_collection": {
