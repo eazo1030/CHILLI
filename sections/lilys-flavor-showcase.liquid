@@ -1,4 +1,17 @@
-<section class="lc-flavors" id="lilys-flavors" aria-labelledby="LcFlavorsHeading-{{ section.id }}">
+{%- liquid
+  assign product_collection = section.settings.collection
+  if product_collection == blank
+    assign product_collection = collections['all']
+  endif
+-%}
+
+<section
+  class="lc-flavors lc-product-explorer"
+  id="lilys-flavors"
+  aria-labelledby="LcFlavorsHeading-{{ section.id }}"
+  data-lc-product-explorer
+  data-lc-initial-limit="{{ section.settings.initial_limit }}"
+>
   <div class="page-width">
     <div class="lc-section-heading lc-section-heading--split">
       <div>
@@ -14,33 +27,175 @@
       {%- endif -%}
     </div>
 
-    <div class="lc-flavors__grid">
-      {%- for block in section.blocks -%}
-        <article class="lc-flavor-card" style="--lc-flavor: {{ block.settings.accent }};" {{ block.shopify_attributes }}>
-          <div class="lc-flavor-card__topline">
-            <span class="lc-flavor-card__number">0{{ forloop.index }}</span>
-            <span class="lc-flavor-card__icon" aria-hidden="true">{{ block.settings.emoji }}</span>
-          </div>
-          <p class="lc-flavor-card__tag">{{ block.settings.tag | escape }}</p>
-          <h3>{{ block.settings.name | escape }}</h3>
-          <p>{{ block.settings.description | escape }}</p>
-          {%- if block.settings.link != blank -%}
-            <a href="{{ block.settings.link }}" class="lc-flavor-card__link">
-              Shop {{ block.settings.name | escape }} <span aria-hidden="true">↗</span>
-            </a>
-          {%- endif -%}
-        </article>
-      {%- endfor -%}
-    </div>
+    {%- if product_collection != blank and product_collection.products_count > 0 -%}
+      <div class="lc-product-explorer__controls" data-lc-filters hidden>
+        <div class="lc-product-explorer__all-row">
+          <p class="lc-product-explorer__prompt">What are you craving?</p>
+          <button
+            type="button"
+            class="lc-product-filter-all is-active"
+            data-lc-product-filter="all"
+            aria-pressed="true"
+            aria-controls="LcProductGrid-{{ section.id }}"
+          >
+            <span>All categories</span>
+            <span class="lc-product-filter-all__count" data-lc-category-count="all">0</span>
+          </button>
+        </div>
+
+        <div class="lc-product-explorer__categories" role="group" aria-label="Filter products by candy style">
+          <button
+            type="button"
+            class="lc-product-category lc-product-category--gummies"
+            data-lc-product-filter="gummies"
+            aria-pressed="false"
+            aria-controls="LcProductGrid-{{ section.id }}"
+          >
+            <span class="lc-product-category__mascot" aria-hidden="true">
+              <img src="{{ 'lilys-pepper-gummies.webp' | asset_url }}" alt="" width="640" height="640" loading="lazy">
+            </span>
+            <span class="lc-product-category__copy">
+              <span class="lc-product-category__eyebrow">SQUISHY + JUICY</span>
+              <strong>Gummies &amp; Bursts</strong>
+              <small>Gusherz, bears, peach, and watermelon</small>
+            </span>
+            <span class="lc-product-category__count"><span data-lc-category-count="gummies">0</span> treats</span>
+          </button>
+
+          <button
+            type="button"
+            class="lc-product-category lc-product-category--belts"
+            data-lc-product-filter="belts"
+            aria-pressed="false"
+            aria-controls="LcProductGrid-{{ section.id }}"
+          >
+            <span class="lc-product-category__mascot" aria-hidden="true">
+              <img src="{{ 'lilys-pepper-belts.webp' | asset_url }}" alt="" width="640" height="640" loading="lazy">
+            </span>
+            <span class="lc-product-category__copy">
+              <span class="lc-product-category__eyebrow">CHEWY + TANGY</span>
+              <strong>Belts &amp; Strings</strong>
+              <small>Long, chewy favorites in every fruit flavor</small>
+            </span>
+            <span class="lc-product-category__count"><span data-lc-category-count="belts">0</span> treats</span>
+          </button>
+
+          <button
+            type="button"
+            class="lc-product-category lc-product-category--specialty"
+            data-lc-product-filter="specialty"
+            aria-pressed="false"
+            aria-controls="LcProductGrid-{{ section.id }}"
+          >
+            <span class="lc-product-category__mascot" aria-hidden="true">
+              <img src="{{ 'lilys-pepper-specialty.webp' | asset_url }}" alt="" width="640" height="640" loading="lazy">
+            </span>
+            <span class="lc-product-category__copy">
+              <span class="lc-product-category__eyebrow">FRUITY + WILD</span>
+              <strong>Fruit &amp; Specialty</strong>
+              <small>Dried mango, lavashak, and unexpected bites</small>
+            </span>
+            <span class="lc-product-category__count"><span data-lc-category-count="specialty">0</span> treats</span>
+          </button>
+
+          <button
+            type="button"
+            class="lc-product-category lc-product-category--packs"
+            data-lc-product-filter="packs"
+            aria-pressed="false"
+            aria-controls="LcProductGrid-{{ section.id }}"
+          >
+            <span class="lc-product-category__mascot" aria-hidden="true">
+              <img src="{{ 'lilys-pepper-packs.webp' | asset_url }}" alt="" width="640" height="640" loading="lazy">
+            </span>
+            <span class="lc-product-category__copy">
+              <span class="lc-product-category__eyebrow">SHARE + STOCK UP</span>
+              <strong>Packs &amp; Bulk</strong>
+              <small>Variety packs, platters, and retail-size orders</small>
+            </span>
+            <span class="lc-product-category__count"><span data-lc-category-count="packs">0</span> treats</span>
+          </button>
+        </div>
+      </div>
+
+      <p class="lc-product-explorer__status" data-lc-filter-status role="status" aria-live="polite"></p>
+
+      <ul id="LcProductGrid-{{ section.id }}" class="lc-product-explorer__grid" role="list" data-lc-product-grid>
+        {%- for product in product_collection.products limit: 50 -%}
+          {%- liquid
+            assign product_title = product.title | downcase
+            assign product_tags = product.tags | join: '|' | downcase
+            assign product_type = product.type | downcase
+            assign product_category = 'gummies'
+            assign product_category_label = 'Gummies & Bursts'
+
+            if product_tags contains 'category:gummies'
+              assign product_category = 'gummies'
+              assign product_category_label = 'Gummies & Bursts'
+            elsif product_tags contains 'category:belts'
+              assign product_category = 'belts'
+              assign product_category_label = 'Belts & Strings'
+            elsif product_tags contains 'category:specialty'
+              assign product_category = 'specialty'
+              assign product_category_label = 'Fruit & Specialty'
+            elsif product_tags contains 'category:packs'
+              assign product_category = 'packs'
+              assign product_category_label = 'Packs & Bulk'
+            elsif product_type == 'wholesale' or product_title contains 'wholesale' or product_title contains 'starter kit'
+              assign product_category = 'packs'
+              assign product_category_label = 'Packs & Bulk'
+            elsif product_title contains 'belt' or product_title contains 'string'
+              assign product_category = 'belts'
+              assign product_category_label = 'Belts & Strings'
+            elsif product_title contains 'mango' or product_title contains 'lavashak' or product_title contains 'fruit roll'
+              assign product_category = 'specialty'
+              assign product_category_label = 'Fruit & Specialty'
+            elsif product_title contains 'platter' or product_title contains 'variety' or product_title contains 'sampler' or product_title contains 'pack'
+              assign product_category = 'packs'
+              assign product_category_label = 'Packs & Bulk'
+            endif
+          -%}
+          <li
+            class="lc-product-explorer__item"
+            data-lc-product-item
+            data-lc-product-category="{{ product_category }}"
+          >
+            <span class="lc-product-explorer__badge">{{ product_category_label }}</span>
+            {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: section.settings.image_ratio,
+              image_shape: 'default',
+              show_secondary_image: section.settings.show_secondary_image,
+              show_vendor: false,
+              show_rating: section.settings.show_rating,
+              show_quick_add: section.settings.enable_quick_add,
+              section_id: section.id
+            %}
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      <div class="lc-product-explorer__footer">
+        <button type="button" class="button button--primary" data-lc-show-all hidden aria-expanded="false" aria-controls="LcProductGrid-{{ section.id }}">
+          Show all <span data-lc-show-all-count></span> products
+        </button>
+        <a href="{{ product_collection.url }}" class="lc-product-explorer__shop-link">
+          Visit the complete candy shop <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    {%- else -%}
+      <div class="lc-product-explorer__empty rte">
+        <p>Choose a collection in the Theme Editor to fill this product explorer.</p>
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Flavor collection",
+  "name": "Product explorer",
   "tag": "section",
   "class": "section section--lilys-flavor",
-  "max_blocks": 4,
   "settings": [
     {
       "type": "text",
@@ -52,38 +207,62 @@
       "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Four flavors. One unforgettable <em>kick.</em>"
+      "default": "Every sweet-heat craving, <em>sorted.</em>"
     },
     {
       "type": "richtext",
       "id": "text",
       "label": "Text",
-      "default": "<p>Juicy, tangy, and finished with just the right amount of chili. Pick your favorite, or try all four.</p>"
-    }
-  ],
-  "blocks": [
+      "default": "<p>Explore the complete Lily's Chilies lineup—from gummies and belts to fruit favorites, platters, and bulk packs.</p>"
+    },
     {
-      "type": "flavor",
-      "name": "Flavor",
-      "settings": [
-        { "type": "text", "id": "emoji", "label": "Icon", "default": "🍓" },
-        { "type": "text", "id": "tag", "label": "Flavor note", "default": "BRIGHT + JUICY" },
-        { "type": "text", "id": "name", "label": "Name", "default": "Strawberry" },
-        { "type": "textarea", "id": "description", "label": "Description", "default": "Chewy strawberry belts coated with tangy chamoy and a mild chili finish." },
-        { "type": "color", "id": "accent", "label": "Accent color", "default": "#e5392d" },
-        { "type": "url", "id": "link", "label": "Product link" }
-      ]
+      "type": "collection",
+      "id": "collection",
+      "label": "Products",
+      "info": "Choose All products to keep every published product in the explorer."
+    },
+    {
+      "type": "range",
+      "id": "initial_limit",
+      "min": 4,
+      "max": 16,
+      "step": 4,
+      "default": 8,
+      "label": "Products shown before Show all"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "square",
+      "label": "Product image ratio"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": true,
+      "label": "Show second image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": true,
+      "label": "Show ratings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": true,
+      "label": "Enable quick add"
     }
   ],
   "presets": [
     {
-      "name": "Flavor collection",
-      "blocks": [
-        { "type": "flavor", "settings": { "emoji": "🍓", "tag": "BRIGHT + JUICY", "name": "Strawberry", "description": "Chewy strawberry belts coated with tangy chamoy and a mild chili finish.", "accent": "#e5392d" } },
-        { "type": "flavor", "settings": { "emoji": "🍉", "tag": "COOL + TANGY", "name": "Watermelon", "description": "Juicy watermelon gummies with tangy chamoy and just enough chili.", "accent": "#2f7d4a" } },
-        { "type": "flavor", "settings": { "emoji": "🍒", "tag": "DEEP + BOLD", "name": "Cherry", "description": "Tart cherry belts with a bold fruit flavor and a gentle chili warmth.", "accent": "#9f1f35" } },
-        { "type": "flavor", "settings": { "emoji": "🍑", "tag": "SOFT + SUNNY", "name": "Peach", "description": "Soft peach gummies with bright chamoy tang and a mild chili kick.", "accent": "#e9903d" } }
-      ]
+      "name": "Product explorer"
     }
   ]
 }
