@@ -5,20 +5,20 @@
       "settings": {
         "eyebrow": "SWEET • SOUR • SPICY",
         "heading": "The candy aisle just got <em>hotter.</em>",
-        "text": "<p>Bold fruit flavor, tangy chamoy and a chili finish that keeps you reaching back into the bag.</p>",
+        "text": "<p>Bold fruit flavor, tangy chamoy, and a warm chili finish that keeps you coming back for another handful.</p>",
         "product": "chili-sampler",
         "image": "shopify://shop_images/IMG_4189.jpg",
         "primary_label": "Shop best sellers",
         "primary_link": "shopify://collections/new-duo-bundles",
-        "secondary_label": "Explore the flavors",
+        "secondary_label": "Explore every flavor",
         "secondary_link": "#lilys-flavors"
       }
     },
     "lilys_marquee": {
       "type": "lilys-marquee",
       "settings": {
-        "text_1": "FREE SHIPPING OVER $50",
-        "text_2": "SAME-DAY SHIPPING",
+        "text_1": "SHIPS NATIONWIDE",
+        "text_2": "BOLD CHAMOY FLAVOR",
         "text_3": "SECURE CHECKOUT",
         "text_4": "MADE FOR SHARING"
       }
@@ -32,7 +32,7 @@
             "emoji": "🍓",
             "tag": "BRIGHT + JUICY",
             "name": "Strawberry",
-            "description": "Classic berry sweetness with a tangy chili finish.",
+            "description": "Chewy strawberry belts coated with tangy chamoy and a mild chili finish.",
             "accent": "#e5392d",
             "link": "shopify://products/chili-strawberry-belts-two-pack-4oz"
           }
@@ -43,7 +43,7 @@
             "emoji": "🍉",
             "tag": "COOL + TANGY",
             "name": "Watermelon",
-            "description": "Juicy watermelon flavor sharpened with chamoy and spice.",
+            "description": "Juicy watermelon gummies with tangy chamoy and just enough chili.",
             "accent": "#2f7d4a",
             "link": "shopify://products/chili-watermelon-gummies-two-pack-4oz"
           }
@@ -54,7 +54,7 @@
             "emoji": "🍒",
             "tag": "DEEP + BOLD",
             "name": "Cherry",
-            "description": "Dark cherry notes with a slow-building chili warmth.",
+            "description": "Tart cherry belts with a bold fruit flavor and a gentle chili warmth.",
             "accent": "#9f1f35",
             "link": "shopify://products/chili-cherry-belts-two-4oz-bags"
           }
@@ -65,7 +65,7 @@
             "emoji": "🍑",
             "tag": "SOFT + SUNNY",
             "name": "Peach",
-            "description": "Mellow peach sweetness with a bright, zesty edge.",
+            "description": "Soft peach gummies with bright chamoy tang and a mild chili kick.",
             "accent": "#e9903d",
             "link": "shopify://products/chili-peach-gummies-two-pack-4oz"
           }
@@ -79,8 +79,8 @@
       ],
       "settings": {
         "eyebrow": "FIND YOUR FAVORITE",
-        "heading": "Four moods. One unforgettable <em>kick.</em>",
-        "text": "<p>Juicy, tangy and finished with just the right amount of chili. Pick a flavor—or build the full lineup.</p>"
+        "heading": "Four flavors. One unforgettable <em>kick.</em>",
+        "text": "<p>Juicy, tangy, and finished with just the right amount of chili. Pick your favorite, or try all four.</p>"
       }
     },
     "featured_collection": {
@@ -88,8 +88,8 @@
       "settings": {
         "title": "Best sellers, <em>turned up.</em>",
         "heading_size": "h1",
-        "description": "<p>Fan favorites for first-timers, loyal snackers and everybody at the party.</p>",
-        "show_description": false,
+        "description": "<p>Start with the customer favorites: two-packs for everyday snacking and the platter for sharing.</p>",
+        "show_description": true,
         "description_style": "body",
         "collection": "new-duo-bundles",
         "products_to_show": 8,
@@ -117,14 +117,14 @@
         "heading_RT4KNr": {
           "type": "heading",
           "settings": {
-            "heading": "Built for people who like their candy with a point of view.",
+            "heading": "Sweet, sour, and just spicy enough.",
             "heading_size": "h1"
           }
         },
         "text_bAK9h7": {
           "type": "text",
           "settings": {
-            "text": "<p>Lily's Chilies brings together fruit-forward candy, tangy chamoy and a warm chili finish in one craveable bite. Start with a duo or put the full platter in the middle of the table.</p>",
+            "text": "<p>Lily's Chilies coats fruit candy with tangy chamoy and a warm chili blend. Grab a two-pack for yourself or put the full platter in the middle of the table.</p>",
             "text_style": "body"
           }
         },
@@ -158,44 +158,7 @@
         "padding_bottom": 80
       }
     },
-    "lilys_ritual": {
-      "type": "lilys-ritual",
-      "blocks": {
-        "sweet": {
-          "type": "step",
-          "settings": {
-            "heading": "The sweet",
-            "text": "Big, bright fruit flavor lands first."
-          }
-        },
-        "tang": {
-          "type": "step",
-          "settings": {
-            "heading": "The tang",
-            "text": "Chamoy brings the mouthwatering middle."
-          }
-        },
-        "heat": {
-          "type": "step",
-          "settings": {
-            "heading": "The heat",
-            "text": "A warm chili finish keeps the bite alive."
-          }
-        }
-      },
-      "block_order": [
-        "sweet",
-        "tang",
-        "heat"
-      ],
-      "settings": {
-        "eyebrow": "THE LILY'S EXPERIENCE",
-        "heading": "A three-act flavor story.",
-        "text": "<p>Every bite is built to move—from fruit-forward sweetness to tangy chamoy to a warm chili finish.</p>",
-        "button_label": "Taste the lineup",
-        "button_link": "shopify://collections/new-duo-bundles"
-      }
-    },
+
     "17074478967d24ad69": {
       "type": "apps",
       "settings": {
@@ -244,7 +207,6 @@
     "lilys_flavor",
     "featured_collection",
     "image_with_text_PgVRwj",
-    "lilys_ritual",
     "17074478967d24ad69",
     "1707447968d1e50687",
     "1707448715ab2fd521",
