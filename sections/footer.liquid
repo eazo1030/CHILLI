@@ -110,15 +110,26 @@
                           class="footer-block__image-wrapper"
                           style="max-width: min(100%, {{ settings.brand_image_width }}px);"
                         >
-                          {{
-                            settings.brand_image
-                            | image_url: width: 1100
-                            | image_tag:
-                              loading: 'lazy',
-                              widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
-                              height: brand_image_height,
-                              width: settings.brand_image_width
-                          }}
+                          {%- if settings.brand_image.src contains 'logo3.jpg' -%}
+                            <img
+                              src="{{ 'lilys-logo-transparent.png' | asset_url }}"
+                              alt="{{ shop.name | escape }}"
+                              loading="lazy"
+                              width="756"
+                              height="290"
+                              style="display: block; width: 100%; height: auto;"
+                            >
+                          {%- else -%}
+                            {{
+                              settings.brand_image
+                              | image_url: width: 1100
+                              | image_tag:
+                                loading: 'lazy',
+                                widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
+                                height: brand_image_height,
+                                width: settings.brand_image_width
+                            }}
+                          {%- endif -%}
                         </div>
                       {%- endif -%}
                       {%- if settings.brand_headline != blank -%}

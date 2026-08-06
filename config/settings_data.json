@@ -120,7 +120,7 @@
       "show_cart_note": false,
       "cart_drawer_collection": "",
       "cart_color_scheme": "scheme-1",
-      "checkout_logo_image": "shopify://shop_images/logo3.jpg",
+      "checkout_logo_image": "",
       "checkout_logo_position": "center",
       "checkout_logo_size": "medium",
       "checkout_accent_color": "#e63b2e",
