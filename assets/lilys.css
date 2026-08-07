@@ -270,94 +270,11 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 }
 
 /* ==========================================================================
-   Hero
+   Hero — full-bleed graphic slideshow. Each slide is a supplied marketing
+   graphic rendered pixel-for-pixel unmodified; invisible hotspot links are
+   overlaid in front of each product bag so the artwork is never touched.
    ========================================================================== */
-.section--lilys-hero { background: #281334; }
-
-.lc-hero {
-  background:
-    linear-gradient(
-      125deg,
-      rgba(255, 72, 116, 0.64) 0%,
-      rgba(255, 157, 74, 0.54) 19%,
-      rgba(255, 226, 94, 0.4) 35%,
-      rgba(91, 214, 157, 0.34) 51%,
-      rgba(71, 178, 255, 0.39) 68%,
-      rgba(170, 91, 255, 0.49) 84%,
-      rgba(255, 72, 166, 0.56) 100%
-    ),
-    #281334;
-  color: rgba(255, 248, 238, 0.78);
-  isolation: isolate;
-  min-height: min(78rem, calc(100vh - 8rem));
-  overflow: hidden;
-  position: relative;
-}
-
-.lc-hero::before {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.22) 0.8px, transparent 0.8px);
-  background-size: 7px 7px;
-  content: "";
-  inset: 0;
-  mix-blend-mode: soft-light;
-  opacity: 0.28;
-  pointer-events: none;
-  position: absolute;
-  z-index: 0;
-}
-
-.lc-hero::after {
-  background:
-    radial-gradient(circle at 22% 26%, rgba(255, 240, 107, 0.68), transparent 24%),
-    radial-gradient(circle at 78% 18%, rgba(89, 226, 202, 0.58), transparent 27%),
-    radial-gradient(circle at 68% 78%, rgba(117, 117, 255, 0.56), transparent 31%),
-    conic-gradient(from 210deg at 55% 45%, rgba(255, 75, 125, 0.7), rgba(255, 197, 77, 0.64), rgba(73, 211, 164, 0.55), rgba(72, 160, 255, 0.6), rgba(180, 83, 255, 0.62), rgba(255, 75, 125, 0.7));
-  content: "";
-  filter: blur(7rem) saturate(1.25);
-  inset: -28%;
-  opacity: 0.58;
-  pointer-events: none;
-  position: absolute;
-  transform: rotate(-8deg);
-  z-index: 0;
-}
-
-.lc-hero__glow {
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 68%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  filter: blur(0.2rem);
-  height: 46rem;
-  pointer-events: none;
-  position: absolute;
-  width: 46rem;
-  z-index: 1;
-}
-
-.lc-hero__glow--one { left: -30rem; top: -25rem; }
-.lc-hero__glow--two { bottom: -34rem; right: -16rem; }
-
-.lc-hero__grid {
-  align-items: center;
-  display: grid;
-  gap: clamp(5rem, 8vw, 11rem);
-  grid-template-columns: minmax(0, 1.02fr) minmax(36rem, 0.98fr);
-  min-height: inherit;
-  padding-bottom: clamp(6rem, 8vw, 10rem);
-  padding-top: clamp(6rem, 8vw, 10rem);
-  position: relative;
-  z-index: 2;
-}
-
-.lc-hero__content {
-  -webkit-backdrop-filter: blur(2rem) saturate(1.18);
-  backdrop-filter: blur(2rem) saturate(1.18);
-  background: linear-gradient(145deg, rgba(36, 14, 46, 0.54), rgba(36, 14, 46, 0.23));
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: clamp(2.4rem, 3vw, 4rem);
-  box-shadow: 0 3rem 8rem rgba(31, 8, 36, 0.2);
-  padding: clamp(3rem, 4vw, 5.6rem);
-}
+.section--lilys-hero { background: #1c0f22; }
 
 .lc-eyebrow {
   color: var(--lc-chili);
@@ -368,152 +285,29 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   text-transform: uppercase;
 }
 
-.lc-eyebrow--light,
-.lc-hero__eyebrow { color: var(--lc-saffron); }
+.lc-eyebrow--light { color: var(--lc-saffron); }
 
-.lc-hero__heading {
-  color: var(--lc-cream);
-  font-size: clamp(5.2rem, 7vw, 9.8rem);
-  letter-spacing: -0.075em;
-  line-height: 0.91;
-  margin: 0;
-  max-width: 8ch;
-}
-
-.lc-hero__heading em {
-  color: var(--lc-saffron);
-  display: inline-block;
-}
-
-.lc-hero__text {
-  color: rgba(255, 248, 238, 0.75);
-  font-size: clamp(1.7rem, 1.65vw, 2.1rem);
-  line-height: 1.55;
-  margin-top: 2.8rem;
-  max-width: 56rem;
-}
-
-.lc-hero__actions {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2.4rem;
-  margin-top: 3.6rem;
-}
-
-.lc-button--light {
-  background: var(--lc-cream);
-  box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.2);
-  color: var(--lc-ink);
-}
-
-.lc-button--light:hover {
-  background: var(--lc-saffron);
-  color: var(--lc-ink);
-}
-
-.lc-text-link {
-  color: var(--lc-cream);
-  font-size: 1.35rem;
-  font-weight: 850;
-  letter-spacing: 0.06em;
-  padding-bottom: 0.5rem;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.lc-text-link::after {
-  background: var(--lc-saffron);
-  content: "";
-  display: block;
-  height: 0.2rem;
-  margin-top: 0.4rem;
-  transform: scaleX(0.35);
-  transform-origin: left;
-  transition: transform 220ms var(--lc-ease);
-}
-
-.lc-text-link:hover { color: var(--lc-saffron); }
-.lc-text-link:hover::after { transform: scaleX(1); }
-
-.lc-hero__notes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2.6rem;
-  list-style: none;
-  margin: 4rem 0 0;
-  padding: 0;
-}
-
-.lc-hero__notes li {
-  align-items: center;
-  color: rgba(255, 248, 238, 0.65);
-  display: flex;
-  font-size: 1.2rem;
-  font-weight: 800;
-  gap: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.lc-hero__notes li span {
-  background: var(--lc-chili);
-  border-radius: 50%;
-  height: 0.7rem;
-  width: 0.7rem;
-}
-
-.lc-hero__visual {
-  justify-self: end;
-  max-width: 59rem;
-  position: relative;
-  width: 100%;
-}
-
-.lc-hero__media {
-  -webkit-backdrop-filter: blur(1.4rem) saturate(1.15);
-  aspect-ratio: 1 / 1;
-  backdrop-filter: blur(1.4rem) saturate(1.15);
-  background: rgba(255, 255, 255, 0.36);
-  border: 1rem solid rgba(255, 255, 255, 0.18);
-  border-radius: var(--lc-radius-lg);
-  box-shadow: var(--lc-shadow-lg);
+.lc-hero--graphic {
+  background: #1c0f22;
   overflow: hidden;
   position: relative;
-  transform: rotate(1.5deg);
 }
 
-.lc-hero__media::after {
-  border: 1px solid rgba(37, 18, 15, 0.08);
-  border-radius: calc(var(--lc-radius-lg) - 1rem);
-  content: "";
-  inset: 1rem;
-  pointer-events: none;
-  position: absolute;
-  z-index: 4;
-}
-
-.lc-hero__image,
-.lc-hero__media .placeholder-svg {
-  aspect-ratio: 1 / 1;
-  display: block;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+.lc-hero-slider--graphic {
+  aspect-ratio: 16 / 9;
+  position: relative;
   width: 100%;
 }
 
-.lc-hero__image--editorial {
-  image-rendering: auto;
-  transform: translateZ(0);
-}
-
-.lc-hero-slider {
+.lc-hero__media--graphic {
+  height: 100%;
   position: relative;
+  width: 100%;
 }
 
-.lc-hero-slide {
+.lc-hero-slide--graphic {
   color: inherit;
+  display: block;
   inset: 0;
   opacity: 0;
   pointer-events: none;
@@ -523,31 +317,37 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   z-index: 0;
 }
 
-.lc-hero-slide.is-active {
+.lc-hero-slide--graphic.is-active {
   opacity: 1;
   pointer-events: auto;
   z-index: 2;
 }
 
-.lc-hero-slide__caption {
-  background: rgba(255, 253, 248, 0.96);
-  border: 1px solid rgba(37, 18, 15, 0.09);
-  border-radius: 1.8rem;
-  bottom: 1.7rem;
-  box-shadow: var(--lc-shadow-md);
-  color: var(--lc-ink);
-  display: grid;
-  left: 1.7rem;
-  max-width: min(27rem, calc(100% - 3.4rem));
-  padding: 1.5rem 1.8rem;
+.lc-hero__image--graphic {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+.lc-hero__hotspots {
+  inset: 0;
   position: absolute;
-  transition: transform 220ms var(--lc-ease), box-shadow 220ms ease;
   z-index: 3;
 }
 
-.lc-hero-slide:hover .lc-hero-slide__caption {
-  box-shadow: 0 2.5rem 6rem rgba(0, 0, 0, 0.25);
-  transform: translateY(-0.4rem);
+.lc-hero__hotspot {
+  border-radius: 1.4rem;
+  outline-offset: 0.3rem;
+  position: absolute;
+  transition: background 160ms ease, box-shadow 160ms ease;
+}
+
+.lc-hero__hotspot:hover,
+.lc-hero__hotspot:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 0 0.3rem rgba(255, 255, 255, 0.7);
 }
 
 .lc-hero-slider__button {
@@ -582,12 +382,12 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 
 .lc-hero-slider__dots {
   align-items: center;
+  bottom: 1.9rem;
   display: flex;
   gap: 0.7rem;
   justify-content: center;
   left: 50%;
   position: absolute;
-  top: 1.9rem;
   transform: translateX(-50%);
   z-index: 6;
 }
@@ -610,59 +410,6 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   width: 2.8rem;
 }
 
-.lc-hero__product-kicker {
-  color: var(--lc-chili);
-  font-size: 1rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.lc-hero__product-title {
-  font-size: 1.6rem;
-  font-weight: 800;
-  line-height: 1.25;
-  margin-top: 0.5rem;
-}
-
-.lc-hero__product-price {
-  color: var(--lc-ink-soft);
-  font-size: 1.35rem;
-  font-weight: 700;
-  margin-top: 0.5rem;
-}
-
-.lc-hero__seal {
-  align-items: center;
-  aspect-ratio: 1;
-  background: var(--lc-saffron);
-  border: 0.5rem solid var(--lc-ink);
-  border-radius: 50%;
-  color: var(--lc-ink);
-  display: flex;
-  flex-direction: column;
-  height: 13rem;
-  justify-content: center;
-  position: absolute;
-  right: -4rem;
-  text-align: center;
-  top: -4rem;
-  transform: rotate(8deg);
-  z-index: 3;
-}
-
-.lc-hero__seal span {
-  font-size: 0.8rem;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-}
-
-.lc-hero__seal strong {
-  font-size: 1.6rem;
-  line-height: 0.92;
-  margin: 0.4rem 0;
-}
-
 /* ==========================================================================
    Promise bar
    ========================================================================== */
@@ -683,6 +430,11 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   z-index: 0;
 }
 
+/* ==========================================================================
+   Gummy runner lane — its own strip directly above the promise bar. This is
+   normal page flow (not an absolute overlay pinned to the hero), so it can
+   never collide with hero artwork, product cards, or the promise-bar text.
+   ========================================================================== */
 .lc-gummy-runway {
   background:
     radial-gradient(circle at 12% 50%, rgba(230, 59, 46, 0.1), transparent 28%),
@@ -690,7 +442,6 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
     linear-gradient(90deg, #fff0e8 0%, #fff4dc 52%, #edf4df 100%);
   height: clamp(8rem, 7.5vw, 9.8rem);
   overflow: hidden;
-  pointer-events: none;
   position: relative;
   width: 100%;
   z-index: 0;
@@ -705,38 +456,17 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   position: absolute;
 }
 
-.lc-gummy-runway--hero {
-  background: transparent;
-  bottom: clamp(0.8rem, 1.8vw, 2.2rem);
-  height: clamp(11rem, 11vw, 14.5rem);
-  inset-inline: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: 3;
-}
-
-.lc-gummy-runway--hero::after {
-  display: none;
-}
-
-.lc-gummy-runway--hero .lc-gummy-runner {
-  animation-duration: 13s;
-  width: clamp(7rem, 7.15vw, 9.1rem);
-}
-
 .lc-gummy-runner {
-  animation: lc-gummy-run-across 10s linear infinite;
-  animation-delay: -1.5s;
-  bottom: 0.1rem;
+  animation: lc-gummy-run-across 13s linear infinite;
+  animation-delay: -2s;
+  bottom: 0.4rem;
   left: 0;
   position: absolute;
   transition: opacity 140ms ease;
-  width: clamp(5.4rem, 5.5vw, 7rem);
+  width: clamp(6.4rem, 6.4vw, 8.4rem);
   will-change: transform;
   z-index: 1;
 }
-
-.lc-gummy-runway--under-header .lc-gummy-runner { opacity: 0; }
 
 .lc-gummy-runner__bounce {
   animation: lc-gummy-logo-bob 360ms ease-in-out infinite alternate;
@@ -747,8 +477,9 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 
 .lc-gummy-runner__sprite {
   display: block;
-  filter: drop-shadow(0 0.45rem 0.25rem rgba(24, 10, 8, 0.2));
+  filter: drop-shadow(0 0.45rem 0.25rem rgba(24, 10, 8, 0.28));
   height: auto;
+  transform: scaleX(-1);
   width: 100%;
 }
 
@@ -1598,8 +1329,6 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
    Responsive
    ========================================================================== */
 @media screen and (max-width: 1180px) {
-  .lc-hero__grid { gap: 5rem; }
-  .lc-hero__seal { height: 11rem; right: -2rem; top: -3rem; }
   .lc-product-explorer__categories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lc-product-explorer__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
@@ -1608,16 +1337,6 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   .header { min-height: 7rem; }
   .header__heading-logo { max-width: 15rem; }
 
-  .lc-hero { min-height: auto; }
-  .lc-hero__grid {
-    gap: 6rem;
-    grid-template-columns: 1fr;
-    padding-bottom: 9rem;
-    padding-top: 7rem;
-  }
-  .lc-hero__content { max-width: 70rem; }
-  .lc-hero__heading { max-width: 9ch; }
-  .lc-hero__visual { justify-self: center; max-width: 62rem; }
   .lc-promise-bar__list { grid-template-columns: repeat(2, 1fr); }
   .lc-promise-bar__list li:nth-child(2) { border-right: 0; }
   .lc-promise-bar__list li:nth-child(-n + 2) { border-bottom: 1px solid rgba(255, 255, 255, 0.22); }
@@ -1642,22 +1361,12 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 
   .header__heading-link .h2 { font-size: 2.1rem; }
 
-  .lc-hero__grid { padding-bottom: 8rem; padding-top: 5.5rem; }
-  .lc-hero__content { padding: 3rem 2.4rem; }
-  .lc-hero__heading { font-size: clamp(4.7rem, 15vw, 7.2rem); }
-  .lc-hero__text { font-size: 1.65rem; }
-  .lc-hero__actions { align-items: flex-start; flex-direction: column; gap: 1.8rem; }
-  .lc-hero__notes { gap: 1.6rem; }
-  .lc-hero__media { border-width: 0.6rem; }
-  .lc-hero-slide__caption { bottom: 1.3rem; left: 1.3rem; max-width: min(25rem, calc(100% - 2.6rem)); }
   .lc-hero-slider__button { height: 4rem; width: 4rem; }
   .lc-hero-slider__button--previous { left: 1.2rem; }
   .lc-hero-slider__button--next { right: 1.2rem; }
-  .lc-hero-slider__dots { top: 1.4rem; }
-  .lc-hero__seal { height: 9.5rem; right: -1rem; top: -2.5rem; }
-  .lc-hero__seal strong { font-size: 1.3rem; }
-  .lc-gummy-runway--hero { bottom: 0.6rem; height: 10.6rem; }
-  .lc-gummy-runway--hero .lc-gummy-runner { animation-duration: 7.8s; width: 6.5rem; }
+  .lc-hero-slider__dots { bottom: 1.4rem; }
+  .lc-gummy-runway { height: clamp(6.6rem, 13vw, 8.2rem); }
+  .lc-gummy-runner { width: clamp(5rem, 12vw, 6.5rem); }
 
   .lc-promise-bar__list li { font-size: 0.95rem; min-height: 5.8rem; }
   .lc-promise-bar__list svg { display: none; }
@@ -1666,6 +1375,7 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   .lc-section-heading h2 { font-size: clamp(3.8rem, 12vw, 5.4rem); }
   .lc-flavors { padding: 7rem 0; }
   .lc-product-explorer__all-row { align-items: flex-start; flex-direction: column; gap: 1.2rem; }
+
   .lc-product-explorer__categories {
     grid-auto-columns: calc(100vw - 8rem);
     grid-auto-flow: column;

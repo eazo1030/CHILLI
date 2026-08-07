@@ -1,5 +1,21 @@
 {%- if section.settings.text_1 != blank or section.settings.text_2 != blank or section.settings.text_3 != blank or section.settings.text_4 != blank -%}
   <aside class="lc-promise-bar" aria-label="Store promises">
+    <div class="lc-gummy-runway" aria-hidden="true">
+      <div class="lc-gummy-runner">
+        <div class="lc-gummy-runner__bounce">
+          <img
+            class="lc-gummy-runner__sprite"
+            src="{{ 'lilys-bear-runner-hd.webp' | asset_url }}"
+            alt=""
+            width="610"
+            height="870"
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
+          >
+        </div>
+      </div>
+    </div>
     <div class="page-width">
       <ul class="lc-promise-bar__list" role="list">
         {%- for i in (1..4) -%}
