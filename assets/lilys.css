@@ -1656,13 +1656,16 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
     transition-duration: 0.01ms !important;
   }
   .lc-gummy-runner {
-    animation: none !important;
-    left: 2rem;
-    transform: none;
+    animation: lc-gummy-run-across 24s linear infinite !important;
+    animation-delay: -1.5s !important;
   }
   .lc-gummy-runner__bounce { animation: none !important; transform: none; }
-  .lc-gummy-runner__leg { animation: none !important; transform: rotate(-22deg); }
-  .lc-gummy-runner__leg--back { transform: rotate(22deg); }
+  .lc-gummy-runner__leg {
+    animation: lc-gummy-leg-front 640ms ease-in-out infinite !important;
+  }
+  .lc-gummy-runner__leg--back {
+    animation-name: lc-gummy-leg-back !important;
+  }
   .lc-product-category[aria-pressed="true"] .lc-product-category__mascot img {
     animation: none !important;
     transform: none;
