@@ -9,17 +9,6 @@
   const render = () => {
     frameRequested = false;
     document.body.classList.toggle('lc-scrolled', window.scrollY > 24);
-
-    const runway = document.querySelector('.lc-gummy-runway');
-    const header = document.querySelector('.section-header.shopify-section-group-header-group')
-      || document.querySelector('.shopify-section-header-sticky')
-      || document.querySelector('.header-wrapper');
-
-    if (!runway || !header) return;
-
-    const headerBottom = header.getBoundingClientRect().bottom;
-    const runwayTop = runway.getBoundingClientRect().top;
-    runway.classList.toggle('lc-gummy-runway--under-header', runwayTop < headerBottom);
   };
 
   const requestRender = () => {
@@ -48,6 +37,11 @@
         slide.setAttribute('aria-hidden', String(!active));
         if (active) slide.removeAttribute('tabindex');
         else slide.setAttribute('tabindex', '-1');
+
+        slide.querySelectorAll('.lc-hero__hotspot').forEach((hotspot) => {
+          if (active) hotspot.removeAttribute('tabindex');
+          else hotspot.setAttribute('tabindex', '-1');
+        });
       });
       dots.forEach((dot, index) => {
         const active = index === activeIndex;
