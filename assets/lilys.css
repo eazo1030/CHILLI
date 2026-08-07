@@ -472,6 +472,7 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 
 .lc-hero__media {
   -webkit-backdrop-filter: blur(1.4rem) saturate(1.15);
+  aspect-ratio: 1 / 1;
   backdrop-filter: blur(1.4rem) saturate(1.15);
   background: rgba(255, 255, 255, 0.36);
   border: 1rem solid rgba(255, 255, 255, 0.18);
@@ -489,39 +490,143 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   inset: 1rem;
   pointer-events: none;
   position: absolute;
+  z-index: 4;
 }
 
 .lc-hero__image,
 .lc-hero__media .placeholder-svg {
   aspect-ratio: 1 / 1;
   display: block;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   width: 100%;
 }
 
-.lc-hero__product-card {
-  background: rgba(255, 253, 248, 0.96);
-  border: 1px solid rgba(37, 18, 15, 0.09);
-  border-radius: 1.8rem;
-  bottom: -3.4rem;
-  box-shadow: var(--lc-shadow-md);
-  color: var(--lc-ink);
-  display: grid;
-  left: -5rem;
-  max-width: 27rem;
-  padding: 1.8rem 2rem;
+.lc-hero-slider {
+  position: relative;
+}
+
+.lc-hero-slide {
+  color: inherit;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
   position: absolute;
   text-decoration: none;
-  transform: rotate(-2deg);
-  transition: transform 220ms var(--lc-ease), box-shadow 220ms ease;
+  transition: opacity 600ms ease;
+  z-index: 0;
+}
+
+.lc-hero-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
   z-index: 2;
 }
 
-.lc-hero__product-card:hover {
-  box-shadow: 0 2.5rem 6rem rgba(0, 0, 0, 0.25);
+.lc-hero-slide__caption {
+  background: rgba(255, 253, 248, 0.96);
+  border: 1px solid rgba(37, 18, 15, 0.09);
+  border-radius: 1.8rem;
+  bottom: 1.7rem;
+  box-shadow: var(--lc-shadow-md);
   color: var(--lc-ink);
-  transform: rotate(0) translateY(-0.4rem);
+  display: grid;
+  left: 1.7rem;
+  max-width: min(27rem, calc(100% - 3.4rem));
+  padding: 1.5rem 1.8rem;
+  position: absolute;
+  transition: transform 220ms var(--lc-ease), box-shadow 220ms ease;
+  z-index: 3;
+}
+
+.lc-hero-slide:hover .lc-hero-slide__caption {
+  box-shadow: 0 2.5rem 6rem rgba(0, 0, 0, 0.25);
+  transform: translateY(-0.4rem);
+}
+
+.lc-hero-slider__button {
+  align-items: center;
+  appearance: none;
+  background: rgba(37, 18, 15, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-size: 3rem;
+  height: 4.4rem;
+  justify-content: center;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background 180ms ease, transform 180ms var(--lc-ease);
+  width: 4.4rem;
+  z-index: 6;
+}
+
+.lc-hero-slider__button:hover {
+  background: var(--lc-chili-dark);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.lc-hero-slider__button--previous { left: 1.8rem; }
+.lc-hero-slider__button--next { right: 1.8rem; }
+
+.lc-hero-slider__toggle {
+  align-items: center;
+  appearance: none;
+  background: rgba(37, 18, 15, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-size: 1.4rem;
+  font-weight: 900;
+  height: 3.6rem;
+  justify-content: center;
+  left: 1.9rem;
+  min-width: 3.6rem;
+  padding: 0 1rem;
+  position: absolute;
+  top: 1.7rem;
+  z-index: 6;
+}
+
+.lc-hero-slider__toggle:hover { background: var(--lc-chili-dark); }
+.lc-hero-slider__toggle:disabled { cursor: not-allowed; opacity: 0.58; }
+
+.lc-hero-slider__dots {
+  align-items: center;
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  top: 1.9rem;
+  transform: translateX(-50%);
+  z-index: 6;
+}
+
+.lc-hero-slider__dot {
+  appearance: none;
+  background: rgba(255, 255, 255, 0.62);
+  border: 0.2rem solid rgba(37, 18, 15, 0.46);
+  border-radius: 999px;
+  cursor: pointer;
+  height: 1.1rem;
+  padding: 0;
+  transition: background 180ms ease, width 220ms var(--lc-ease);
+  width: 1.1rem;
+}
+
+.lc-hero-slider__dot.is-active,
+.lc-hero-slider__dot[aria-current="true"] {
+  background: var(--lc-saffron);
+  width: 2.8rem;
 }
 
 .lc-hero__product-kicker {
@@ -586,6 +691,10 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   z-index: 2;
 }
 
+.section.section--lilys-marquee + .section {
+  margin-top: 0;
+}
+
 .lc-promise-bar {
   background: var(--lc-chili);
   color: #fff;
@@ -613,6 +722,25 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   height: 0.1rem;
   inset-inline: 0;
   position: absolute;
+}
+
+.lc-gummy-runway--hero {
+  background: transparent;
+  bottom: clamp(0.8rem, 1.8vw, 2.2rem);
+  height: clamp(11rem, 11vw, 14.5rem);
+  inset-inline: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: 3;
+}
+
+.lc-gummy-runway--hero::after {
+  display: none;
+}
+
+.lc-gummy-runway--hero .lc-gummy-runner {
+  animation-duration: 13s;
+  width: clamp(7rem, 7.15vw, 9.1rem);
 }
 
 .lc-gummy-runner {
@@ -1413,7 +1541,6 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 @media screen and (max-width: 1180px) {
   .lc-hero__grid { gap: 5rem; }
   .lc-hero__seal { height: 11rem; right: -2rem; top: -3rem; }
-  .lc-hero__product-card { left: -2rem; }
   .lc-product-explorer__categories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lc-product-explorer__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
@@ -1461,11 +1588,16 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   .lc-hero__actions { align-items: flex-start; flex-direction: column; gap: 1.8rem; }
   .lc-hero__notes { gap: 1.6rem; }
   .lc-hero__media { border-width: 0.6rem; }
-  .lc-hero__product-card { bottom: -4rem; left: 1.5rem; max-width: min(25rem, 70vw); }
+  .lc-hero-slide__caption { bottom: 1.3rem; left: 1.3rem; max-width: min(25rem, calc(100% - 2.6rem)); }
+  .lc-hero-slider__button { height: 4rem; width: 4rem; }
+  .lc-hero-slider__button--previous { left: 1.2rem; }
+  .lc-hero-slider__button--next { right: 1.2rem; }
+  .lc-hero-slider__toggle { left: 1.3rem; top: 1.2rem; }
+  .lc-hero-slider__dots { top: 1.4rem; }
   .lc-hero__seal { height: 9.5rem; right: -1rem; top: -2.5rem; }
   .lc-hero__seal strong { font-size: 1.3rem; }
-  .lc-gummy-runway { height: 8.4rem; }
-  .lc-gummy-runner { animation-duration: 6s; width: 5rem; }
+  .lc-gummy-runway--hero { bottom: 0.6rem; height: 10.6rem; }
+  .lc-gummy-runway--hero .lc-gummy-runner { animation-duration: 7.8s; width: 6.5rem; }
 
   .lc-promise-bar__list li { font-size: 0.95rem; min-height: 5.8rem; }
   .lc-promise-bar__list svg { display: none; }

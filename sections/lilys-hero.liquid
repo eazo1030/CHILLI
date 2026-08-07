@@ -1,13 +1,27 @@
 {%- liquid
   assign featured_product = section.settings.product
+  assign slideshow_collection = section.settings.slideshow_collection
+  assign slideshow_limit = section.settings.slideshow_limit
+  assign slide_count = 0
+  if slideshow_collection != blank
+    assign slide_count = slideshow_collection.products_count | at_most: slideshow_limit
+  endif
+  if slide_count == 0 and featured_product != blank
+    assign slide_count = 1
+  endif
+
   assign hero_image = featured_product.featured_media.preview_image | default: section.settings.image
   assign primary_link = section.settings.primary_link
+  if primary_link == blank and slideshow_collection != blank
+    assign primary_link = slideshow_collection.url
+  endif
   if primary_link == blank and featured_product != blank
     assign primary_link = featured_product.url
   endif
   if primary_link == blank
     assign primary_link = routes.all_products_collection_url
   endif
+  assign slide_interval = section.settings.slideshow_speed | times: 1000
 -%}
 
 <section class="lc-hero" aria-labelledby="LcHeroHeading-{{ section.id }}">
@@ -51,35 +65,147 @@
     </div>
 
     <div class="lc-hero__visual">
-      <div class="lc-hero__media">
-        {%- if hero_image != blank -%}
-          {{ hero_image
-            | image_url: width: 1400
-            | image_tag:
-              class: 'lc-hero__image',
-              widths: '480, 720, 960, 1200, 1400',
-              sizes: '(min-width: 990px) 48vw, 92vw',
-              loading: 'eager',
-              fetchpriority: 'high',
-              alt: featured_product.title
-          }}
-        {%- else -%}
-          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg lc-hero__image' }}
+      <div
+        class="lc-hero-slider"
+        data-lc-hero-slider
+        data-lc-slide-interval="{{ slide_interval }}"
+        data-lc-slide-autoplay="{{ section.settings.slideshow_autoplay }}"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Featured products"
+      >
+        <div class="lc-hero__media" id="LcHeroSlides-{{ section.id }}">
+          {%- if slideshow_collection != blank and slide_count > 0 -%}
+            {%- for slide_product in slideshow_collection.products limit: slideshow_limit -%}
+              {%- liquid
+                assign slide_image = slide_product.featured_media.preview_image
+                assign image_loading = 'lazy'
+                assign image_priority = 'auto'
+                if forloop.first
+                  assign image_loading = 'eager'
+                  assign image_priority = 'high'
+                endif
+              -%}
+              <a
+                class="lc-hero-slide{% if forloop.first %} is-active{% endif %}"
+                href="{{ slide_product.url }}"
+                data-lc-hero-slide
+                data-lc-slide-index="{{ forloop.index0 }}"
+                aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
+                {% unless forloop.first %}tabindex="-1"{% endunless %}
+              >
+                {%- if slide_image != blank -%}
+                  {{ slide_image
+                    | image_url: width: 1400
+                    | image_tag:
+                      class: 'lc-hero__image',
+                      widths: '480, 720, 960, 1200, 1400',
+                      sizes: '(min-width: 990px) 48vw, 92vw',
+                      loading: image_loading,
+                      fetchpriority: image_priority,
+                      alt: slide_product.title
+                  }}
+                {%- endif -%}
+                <span class="lc-hero-slide__caption">
+                  <span class="lc-hero__product-kicker">Featured favorite</span>
+                  <strong class="lc-hero__product-title">{{ slide_product.title | escape }}</strong>
+                  <span class="lc-hero__product-price">{{ slide_product.price | money }}</span>
+                </span>
+              </a>
+            {%- endfor -%}
+          {%- elsif hero_image != blank -%}
+            <a
+              class="lc-hero-slide is-active"
+              href="{{ featured_product.url | default: primary_link }}"
+              data-lc-hero-slide
+              data-lc-slide-index="0"
+              aria-hidden="false"
+            >
+              {{ hero_image
+                | image_url: width: 1400
+                | image_tag:
+                  class: 'lc-hero__image',
+                  widths: '480, 720, 960, 1200, 1400',
+                  sizes: '(min-width: 990px) 48vw, 92vw',
+                  loading: 'eager',
+                  fetchpriority: 'high',
+                  alt: featured_product.title
+              }}
+              {%- if featured_product != blank -%}
+                <span class="lc-hero-slide__caption">
+                  <span class="lc-hero__product-kicker">Featured favorite</span>
+                  <strong class="lc-hero__product-title">{{ featured_product.title | escape }}</strong>
+                  <span class="lc-hero__product-price">{{ featured_product.price | money }}</span>
+                </span>
+              {%- endif -%}
+            </a>
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg lc-hero__image' }}
+          {%- endif -%}
+        </div>
+
+        {%- if slide_count > 1 -%}
+          <button
+            type="button"
+            class="lc-hero-slider__toggle"
+            data-lc-slide-toggle
+            aria-label="Pause featured products"
+            aria-pressed="false"
+          ><span data-lc-slide-toggle-icon aria-hidden="true">Ⅱ</span></button>
+          <button
+            type="button"
+            class="lc-hero-slider__button lc-hero-slider__button--previous"
+            data-lc-slide-previous
+            aria-label="Previous featured product"
+            aria-controls="LcHeroSlides-{{ section.id }}"
+          ><span aria-hidden="true">‹</span></button>
+          <button
+            type="button"
+            class="lc-hero-slider__button lc-hero-slider__button--next"
+            data-lc-slide-next
+            aria-label="Next featured product"
+            aria-controls="LcHeroSlides-{{ section.id }}"
+          ><span aria-hidden="true">›</span></button>
+          <div class="lc-hero-slider__dots" role="group" aria-label="Choose featured product">
+            {%- for slide_product in slideshow_collection.products limit: slideshow_limit -%}
+              <button
+                type="button"
+                class="lc-hero-slider__dot{% if forloop.first %} is-active{% endif %}"
+                data-lc-slide-dot="{{ forloop.index0 }}"
+                aria-label="Show {{ slide_product.title | escape }}"
+                aria-controls="LcHeroSlides-{{ section.id }}"
+                {% if forloop.first %}aria-current="true"{% endif %}
+              ></button>
+            {%- endfor -%}
+          </div>
         {%- endif -%}
       </div>
-
-      {%- if featured_product != blank -%}
-        <a class="lc-hero__product-card" href="{{ featured_product.url }}">
-          <span class="lc-hero__product-kicker">Featured favorite</span>
-          <span class="lc-hero__product-title">{{ featured_product.title | escape }}</span>
-          <span class="lc-hero__product-price">{{ featured_product.price | money }}</span>
-        </a>
-      {%- endif -%}
 
       <div class="lc-hero__seal" aria-hidden="true">
         <span>THE</span>
         <strong>SWEET<br>HEAT</strong>
         <span>EXPERIENCE</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="lc-gummy-runway lc-gummy-runway--hero" aria-hidden="true">
+    <div class="lc-gummy-runner">
+      <div class="lc-gummy-runner__bounce">
+        <div class="lc-gummy-runner__rig">
+          <span class="lc-gummy-runner__leg lc-gummy-runner__leg--back"></span>
+          <span class="lc-gummy-runner__leg lc-gummy-runner__leg--front"></span>
+          <img
+            class="lc-gummy-runner__sprite"
+            src="{{ 'lilys-logo-bear-chili-clean.png' | asset_url }}"
+            alt=""
+            width="264"
+            height="432"
+            loading="eager"
+            decoding="async"
+            aria-hidden="true"
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -110,9 +236,39 @@
       "default": "<p>Bold fruit flavor, tangy chamoy, and a warm chili finish that keeps you coming back for another handful.</p>"
     },
     {
+      "type": "collection",
+      "id": "slideshow_collection",
+      "label": "Slideshow products"
+    },
+    {
+      "type": "range",
+      "id": "slideshow_limit",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 5,
+      "label": "Number of slides"
+    },
+    {
+      "type": "checkbox",
+      "id": "slideshow_autoplay",
+      "default": true,
+      "label": "Automatically rotate slides"
+    },
+    {
+      "type": "range",
+      "id": "slideshow_speed",
+      "min": 3,
+      "max": 9,
+      "step": 1,
+      "unit": "s",
+      "default": 6,
+      "label": "Seconds per slide"
+    },
+    {
       "type": "product",
       "id": "product",
-      "label": "Featured product"
+      "label": "Fallback featured product"
     },
     {
       "type": "image_picker",
