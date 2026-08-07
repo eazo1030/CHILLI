@@ -1,0 +1,125 @@
+<section class="lc-candy-editorial" aria-labelledby="LcCandyEditorialHeading-{{ section.id }}">
+  <div class="page-width lc-candy-editorial__inner">
+    <img
+      class="lc-candy-editorial__mascot"
+      src="{{ 'lilys-chili-excited.webp' | asset_url }}"
+      alt=""
+      width="314"
+      height="720"
+      loading="lazy"
+      aria-hidden="true"
+    >
+
+    <div class="lc-candy-editorial__header">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="lc-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        <h2 id="LcCandyEditorialHeading-{{ section.id }}">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.text != blank -%}
+        <div class="lc-candy-editorial__intro rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="lc-candy-editorial__grid">
+      <figure class="lc-candy-editorial__card lc-candy-editorial__card--red">
+        <img
+          src="{{ 'lilys-editorial-red-belts.webp' | asset_url }}"
+          alt="A hand holding red chili-coated candy belts"
+          width="1280"
+          height="1280"
+          loading="lazy"
+        >
+        <figcaption>
+          <span>01</span>
+          <strong>Strawberry heat</strong>
+          <small>Sweet berry flavor with a tangy chili finish.</small>
+        </figcaption>
+      </figure>
+
+      <figure class="lc-candy-editorial__card lc-candy-editorial__card--green">
+        <img
+          src="{{ 'lilys-editorial-green-belts.webp' | asset_url }}"
+          alt="A hand holding green chili-coated candy belts"
+          width="1280"
+          height="1280"
+          loading="lazy"
+        >
+        <figcaption>
+          <span>02</span>
+          <strong>Watermelon tang</strong>
+          <small>Juicy, chewy, and coated for the perfect kick.</small>
+        </figcaption>
+      </figure>
+
+      <figure class="lc-candy-editorial__card lc-candy-editorial__card--blue">
+        <img
+          src="{{ 'lilys-editorial-blue-belts.webp' | asset_url }}"
+          alt="A hand holding blue chili-coated candy belts"
+          width="1280"
+          height="1280"
+          loading="lazy"
+        >
+        <figcaption>
+          <span>03</span>
+          <strong>Blueberry bold</strong>
+          <small>Bright fruit flavor balanced with savory heat.</small>
+        </figcaption>
+      </figure>
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="lc-candy-editorial__footer">
+        <a class="button button--primary" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
+          {{ section.settings.button_label | escape }}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Candy color story",
+  "tag": "section",
+  "class": "section section--lilys-editorial",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "PICK YOUR COLOR"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Big flavor looks <em>this good.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Colorful fruit candy, a tangy chamoy coating, and the chili finish that makes every bite unmistakably Lily's.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop candy belts"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Candy color story"
+    }
+  ]
+}
+{% endschema %}

@@ -499,7 +499,13 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   display: block;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   width: 100%;
+}
+
+.lc-hero__image--editorial {
+  image-rendering: auto;
+  transform: translateZ(0);
 }
 
 .lc-hero-slider {
@@ -573,31 +579,6 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 
 .lc-hero-slider__button--previous { left: 1.8rem; }
 .lc-hero-slider__button--next { right: 1.8rem; }
-
-.lc-hero-slider__toggle {
-  align-items: center;
-  appearance: none;
-  background: rgba(37, 18, 15, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.42);
-  border-radius: 999px;
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  font: inherit;
-  font-size: 1.4rem;
-  font-weight: 900;
-  height: 3.6rem;
-  justify-content: center;
-  left: 1.9rem;
-  min-width: 3.6rem;
-  padding: 0 1rem;
-  position: absolute;
-  top: 1.7rem;
-  z-index: 6;
-}
-
-.lc-hero-slider__toggle:hover { background: var(--lc-chili-dark); }
-.lc-hero-slider__toggle:disabled { cursor: not-allowed; opacity: 0.58; }
 
 .lc-hero-slider__dots {
   align-items: center;
@@ -758,58 +739,17 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 .lc-gummy-runway--under-header .lc-gummy-runner { opacity: 0; }
 
 .lc-gummy-runner__bounce {
-  animation: lc-gummy-logo-bob 320ms ease-in-out infinite alternate;
+  animation: lc-gummy-logo-bob 360ms ease-in-out infinite alternate;
+  aspect-ratio: 610 / 870;
   transform-origin: 50% 100%;
-}
-
-.lc-gummy-runner__rig {
-  aspect-ratio: 264 / 432;
-  isolation: isolate;
-  position: relative;
-  transform: scaleX(-1);
   width: 100%;
 }
 
 .lc-gummy-runner__sprite {
-  clip-path: inset(0 0 24% 0);
   display: block;
-  height: 100%;
-  inset: 0;
-  object-fit: contain;
-  position: absolute;
+  filter: drop-shadow(0 0.45rem 0.25rem rgba(24, 10, 8, 0.2));
+  height: auto;
   width: 100%;
-  z-index: 2;
-}
-
-.lc-gummy-runner__leg {
-  animation: lc-gummy-leg-front 320ms ease-in-out infinite;
-  background: linear-gradient(105deg, #58c85c 0%, #40ae46 100%);
-  border-radius: 999px;
-  height: 33%;
-  left: 64%;
-  position: absolute;
-  top: 64%;
-  transform-origin: 50% 8%;
-  width: 24%;
-  z-index: 1;
-}
-
-.lc-gummy-runner__leg::after {
-  background: inherit;
-  border-radius: 999px;
-  bottom: -4%;
-  content: "";
-  height: 36%;
-  left: -18%;
-  position: absolute;
-  width: 145%;
-}
-
-.lc-gummy-runner__leg--back {
-  animation-name: lc-gummy-leg-back;
-  filter: brightness(0.86);
-  left: 54%;
-  z-index: 0;
 }
 
 @keyframes lc-gummy-run-across {
@@ -820,16 +760,6 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
 @keyframes lc-gummy-logo-bob {
   from { transform: translateY(0) rotate(-1deg); }
   to { transform: translateY(-0.3rem) rotate(1deg); }
-}
-
-@keyframes lc-gummy-leg-front {
-  0%, 100% { transform: rotate(-32deg); }
-  50% { transform: rotate(32deg); }
-}
-
-@keyframes lc-gummy-leg-back {
-  0%, 100% { transform: rotate(32deg); }
-  50% { transform: rotate(-32deg); }
 }
 
 .lc-promise-bar__list {
@@ -1157,6 +1087,135 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   border-radius: var(--lc-radius-md);
   padding: 4rem;
   text-align: center;
+}
+
+/* ==========================================================================
+   Candy color story
+   ========================================================================== */
+.lc-candy-editorial {
+  background:
+    radial-gradient(circle at 10% 16%, rgba(230, 59, 46, 0.34), transparent 30rem),
+    radial-gradient(circle at 92% 88%, rgba(86, 114, 74, 0.3), transparent 34rem),
+    var(--lc-ink);
+  color: var(--lc-cream);
+  overflow: hidden;
+  padding: clamp(8rem, 10vw, 13rem) 0;
+}
+
+.lc-candy-editorial__inner { position: relative; }
+
+.lc-candy-editorial__mascot {
+  height: auto;
+  opacity: 0.96;
+  pointer-events: none;
+  position: absolute;
+  right: -1rem;
+  top: -8rem;
+  transform: rotate(7deg);
+  width: clamp(8rem, 10vw, 14rem);
+  z-index: 3;
+}
+
+.lc-candy-editorial__header {
+  align-items: end;
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: minmax(0, 1.1fr) minmax(28rem, 0.65fr);
+  margin-bottom: clamp(4rem, 6vw, 7rem);
+  padding-right: clamp(7rem, 10vw, 14rem);
+}
+
+.lc-candy-editorial .lc-eyebrow { color: var(--lc-saffron); }
+
+.lc-candy-editorial h2 {
+  color: var(--lc-cream);
+  font-size: clamp(4rem, 5.7vw, 7.4rem);
+  margin: 0;
+  max-width: 12ch;
+}
+
+.lc-candy-editorial h2 em { color: var(--lc-saffron); }
+
+.lc-candy-editorial__intro {
+  color: rgba(255, 248, 238, 0.72);
+  font-size: 1.7rem;
+  line-height: 1.6;
+}
+
+.lc-candy-editorial__grid {
+  display: grid;
+  gap: clamp(1.6rem, 2.5vw, 3rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lc-candy-editorial__card {
+  aspect-ratio: 4 / 5;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--lc-radius-lg);
+  box-shadow: 0 2.5rem 6rem rgba(0, 0, 0, 0.24);
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.lc-candy-editorial__card:nth-child(2) { transform: translateY(2.2rem); }
+
+.lc-candy-editorial__card > img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--lc-ease);
+  width: 100%;
+}
+
+.lc-candy-editorial__card:hover > img { transform: scale(1.045); }
+
+.lc-candy-editorial__card::after {
+  background: linear-gradient(180deg, transparent 42%, rgba(25, 9, 8, 0.88) 100%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.lc-candy-editorial__card figcaption {
+  bottom: 0;
+  display: grid;
+  gap: 0.45rem;
+  inset-inline: 0;
+  padding: clamp(2rem, 3vw, 3.2rem);
+  position: absolute;
+  z-index: 2;
+}
+
+.lc-candy-editorial__card figcaption span {
+  color: var(--lc-saffron);
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.lc-candy-editorial__card figcaption strong {
+  color: #fff;
+  font-size: clamp(2rem, 2.4vw, 3rem);
+  line-height: 1;
+}
+
+.lc-candy-editorial__card figcaption small {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.lc-candy-editorial__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(5rem, 7vw, 8rem);
+}
+
+.lc-candy-editorial__footer .button {
+  background: var(--lc-saffron);
+  color: var(--lc-ink);
 }
 
 /* ==========================================================================
@@ -1564,8 +1623,10 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   .lc-promise-bar__list li:nth-child(-n + 2) { border-bottom: 1px solid rgba(255, 255, 255, 0.22); }
 
   .lc-section-heading--split,
-  .lc-ritual__layout { grid-template-columns: 1fr; }
+  .lc-ritual__layout,
+  .lc-candy-editorial__header { grid-template-columns: 1fr; }
   .lc-section-heading__text { max-width: 66rem; }
+  .lc-candy-editorial__header { gap: 2.5rem; padding-right: 10rem; }
   .lc-product-explorer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lc-ritual__intro { position: static; }
   .lc-ritual h2 { max-width: 12ch; }
@@ -1592,7 +1653,6 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   .lc-hero-slider__button { height: 4rem; width: 4rem; }
   .lc-hero-slider__button--previous { left: 1.2rem; }
   .lc-hero-slider__button--next { right: 1.2rem; }
-  .lc-hero-slider__toggle { left: 1.3rem; top: 1.2rem; }
   .lc-hero-slider__dots { top: 1.4rem; }
   .lc-hero__seal { height: 9.5rem; right: -1rem; top: -2.5rem; }
   .lc-hero__seal strong { font-size: 1.3rem; }
@@ -1621,6 +1681,25 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
   .lc-product-explorer__badge { font-size: 0.72rem; left: 0.8rem; max-width: calc(100% - 1.6rem); top: 0.8rem; }
   .lc-product-explorer__footer { align-items: stretch; flex-direction: column; text-align: center; }
   .lc-product-explorer__shop-link { padding: 1rem; }
+
+  .lc-candy-editorial { padding: 7rem 0; }
+  .lc-candy-editorial__mascot { right: 0; top: -4rem; width: 7rem; }
+  .lc-candy-editorial__header { margin-bottom: 3rem; padding-right: 6rem; }
+  .lc-candy-editorial h2 { font-size: clamp(3.8rem, 12vw, 5.4rem); }
+  .lc-candy-editorial__grid {
+    gap: 1.6rem;
+    grid-auto-columns: calc(100vw - 6rem);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    margin-right: -2rem;
+    overflow-x: auto;
+    padding: 0.8rem 2rem 3rem 0;
+    scroll-snap-type: x mandatory;
+  }
+  .lc-candy-editorial__card { aspect-ratio: 4 / 5; scroll-snap-align: start; }
+  .lc-candy-editorial__card:nth-child(2) { transform: none; }
+  .lc-candy-editorial__footer { justify-content: stretch; margin-top: 2rem; }
+  .lc-candy-editorial__footer .button { width: 100%; }
 
   .template-index .collection { padding-bottom: 7rem !important; padding-top: 7rem !important; }
   .template-index .collection__title .title { font-size: clamp(3.8rem, 12vw, 5.3rem); }
@@ -1660,12 +1739,6 @@ body.lc-scrolled .shopify-section-header-sticky .header-wrapper {
     animation-delay: -1.5s !important;
   }
   .lc-gummy-runner__bounce { animation: none !important; transform: none; }
-  .lc-gummy-runner__leg {
-    animation: lc-gummy-leg-front 640ms ease-in-out infinite !important;
-  }
-  .lc-gummy-runner__leg--back {
-    animation-name: lc-gummy-leg-back !important;
-  }
   .lc-product-category[aria-pressed="true"] .lc-product-category__mascot img {
     animation: none !important;
     transform: none;

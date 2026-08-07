@@ -35,56 +35,12 @@
     const dots = [...root.querySelectorAll('[data-lc-slide-dot]')];
     const previousButton = root.querySelector('[data-lc-slide-previous]');
     const nextButton = root.querySelector('[data-lc-slide-next]');
-    const toggleButton = root.querySelector('[data-lc-slide-toggle]');
-    const toggleIcon = root.querySelector('[data-lc-slide-toggle-icon]');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const autoplayEnabled = root.dataset.lcSlideAutoplay === 'true';
-    const interval = Math.max(3000, Number.parseInt(root.dataset.lcSlideInterval || '6000', 10));
 
     if (!slides.length) return;
 
     let activeIndex = Math.max(0, slides.findIndex((slide) => slide.classList.contains('is-active')));
-    let timer = null;
-    let manuallyPaused = false;
-    let pointerPaused = false;
-    let focusPaused = false;
 
-    const stop = () => {
-      if (timer !== null) window.clearInterval(timer);
-      timer = null;
-    };
-
-    const canAutoplay = () => (
-      slides.length > 1
-      && autoplayEnabled
-      && !manuallyPaused
-      && !reducedMotion.matches
-      && !pointerPaused
-      && !focusPaused
-      && !document.hidden
-    );
-
-    const updateToggle = () => {
-      if (!toggleButton) return;
-      const motionDisabled = reducedMotion.matches;
-      toggleButton.disabled = motionDisabled;
-      toggleButton.setAttribute('aria-pressed', String(manuallyPaused || motionDisabled));
-      toggleButton.setAttribute(
-        'aria-label',
-        motionDisabled
-          ? 'Automatic product rotation disabled by motion preference'
-          : manuallyPaused ? 'Play featured products' : 'Pause featured products',
-      );
-      if (toggleIcon) toggleIcon.textContent = manuallyPaused || motionDisabled ? '▶' : 'Ⅱ';
-    };
-
-    const start = () => {
-      stop();
-      if (!canAutoplay()) return;
-      timer = window.setInterval(() => showSlide(activeIndex + 1), interval);
-    };
-
-    const showSlide = (requestedIndex, restartAutoplay = false) => {
+    const showSlide = (requestedIndex) => {
       activeIndex = (requestedIndex + slides.length) % slides.length;
       slides.forEach((slide, index) => {
         const active = index === activeIndex;
@@ -99,70 +55,25 @@
         if (active) dot.setAttribute('aria-current', 'true');
         else dot.removeAttribute('aria-current');
       });
-      if (restartAutoplay) start();
     };
 
-    toggleButton?.addEventListener('click', () => {
-      manuallyPaused = !manuallyPaused;
-      updateToggle();
-      if (manuallyPaused) {
-        stop();
-      } else {
-        pointerPaused = false;
-        focusPaused = false;
-        start();
-      }
-    });
-    previousButton?.addEventListener('click', () => showSlide(activeIndex - 1, true));
-    nextButton?.addEventListener('click', () => showSlide(activeIndex + 1, true));
+    previousButton?.addEventListener('click', () => showSlide(activeIndex - 1));
+    nextButton?.addEventListener('click', () => showSlide(activeIndex + 1));
     dots.forEach((dot) => {
       dot.addEventListener('click', () => {
         const index = Number.parseInt(dot.dataset.lcSlideDot || '0', 10);
-        showSlide(index, true);
+        showSlide(index);
       });
     });
 
     root.addEventListener('keydown', (event) => {
       if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
       event.preventDefault();
-      showSlide(activeIndex + (event.key === 'ArrowRight' ? 1 : -1), true);
-    });
-    root.addEventListener('mouseenter', () => {
-      pointerPaused = true;
-      stop();
-    });
-    root.addEventListener('mouseleave', () => {
-      pointerPaused = false;
-      start();
-    });
-    root.addEventListener('focusin', () => {
-      focusPaused = true;
-      stop();
-    });
-    root.addEventListener('focusout', () => {
-      window.requestAnimationFrame(() => {
-        focusPaused = root.contains(document.activeElement);
-        start();
-      });
+      showSlide(activeIndex + (event.key === 'ArrowRight' ? 1 : -1));
     });
 
-    const handleVisibility = () => start();
-    const handleMotionPreference = () => {
-      updateToggle();
-      start();
-    };
-    document.addEventListener('visibilitychange', handleVisibility);
-    reducedMotion.addEventListener?.('change', handleMotionPreference);
-
-    root.lcHeroSliderCleanup = () => {
-      stop();
-      document.removeEventListener('visibilitychange', handleVisibility);
-      reducedMotion.removeEventListener?.('change', handleMotionPreference);
-    };
     root.dataset.lcHeroSliderReady = 'true';
     showSlide(activeIndex);
-    updateToggle();
-    start();
   };
 
   const initHeroSliders = (scope = document) => {
@@ -279,11 +190,5 @@
     requestRender();
     initHeroSliders(event.target);
     initProductExplorers(event.target);
-  });
-  document.addEventListener('shopify:section:unload', (event) => {
-    const roots = event.target.matches?.('[data-lc-hero-slider]')
-      ? [event.target]
-      : [...event.target.querySelectorAll('[data-lc-hero-slider]')];
-    roots.forEach((root) => root.lcHeroSliderCleanup?.());
   });
 })();

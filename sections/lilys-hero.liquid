@@ -21,7 +21,6 @@
   if primary_link == blank
     assign primary_link = routes.all_products_collection_url
   endif
-  assign slide_interval = section.settings.slideshow_speed | times: 1000
 -%}
 
 <section class="lc-hero" aria-labelledby="LcHeroHeading-{{ section.id }}">
@@ -68,8 +67,6 @@
       <div
         class="lc-hero-slider"
         data-lc-hero-slider
-        data-lc-slide-interval="{{ slide_interval }}"
-        data-lc-slide-autoplay="{{ section.settings.slideshow_autoplay }}"
         role="region"
         aria-roledescription="carousel"
         aria-label="Featured products"
@@ -79,6 +76,17 @@
             {%- for slide_product in slideshow_collection.products limit: slideshow_limit -%}
               {%- liquid
                 assign slide_image = slide_product.featured_media.preview_image
+                assign slide_title = slide_product.title | downcase
+                assign slide_editorial_asset = blank
+                if slide_title contains 'strawberry'
+                  assign slide_editorial_asset = 'lilys-editorial-red-belts.webp'
+                elsif slide_title contains 'blueberry'
+                  assign slide_editorial_asset = 'lilys-editorial-blue-belts.webp'
+                elsif slide_title contains 'watermelon' or slide_title contains 'apple'
+                  assign slide_editorial_asset = 'lilys-editorial-green-belts.webp'
+                elsif slide_title contains 'platter' or slide_title contains 'sampler'
+                  assign slide_editorial_asset = 'lilys-editorial-candy-trio.webp'
+                endif
                 assign image_loading = 'lazy'
                 assign image_priority = 'auto'
                 if forloop.first
@@ -94,12 +102,22 @@
                 aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
                 {% unless forloop.first %}tabindex="-1"{% endunless %}
               >
-                {%- if slide_image != blank -%}
+                {%- if slide_editorial_asset != blank -%}
+                  <img
+                    class="lc-hero__image lc-hero__image--editorial"
+                    src="{{ slide_editorial_asset | asset_url }}"
+                    alt="{{ slide_product.title | escape }}"
+                    width="1280"
+                    height="1280"
+                    loading="{{ image_loading }}"
+                    fetchpriority="{{ image_priority }}"
+                  >
+                {%- elsif slide_image != blank -%}
                   {{ slide_image
-                    | image_url: width: 1400
+                    | image_url: width: 1800
                     | image_tag:
                       class: 'lc-hero__image',
-                      widths: '480, 720, 960, 1200, 1400',
+                      widths: '600, 900, 1200, 1500, 1800',
                       sizes: '(min-width: 990px) 48vw, 92vw',
                       loading: image_loading,
                       fetchpriority: image_priority,
@@ -147,13 +165,6 @@
         {%- if slide_count > 1 -%}
           <button
             type="button"
-            class="lc-hero-slider__toggle"
-            data-lc-slide-toggle
-            aria-label="Pause featured products"
-            aria-pressed="false"
-          ><span data-lc-slide-toggle-icon aria-hidden="true">Ⅱ</span></button>
-          <button
-            type="button"
             class="lc-hero-slider__button lc-hero-slider__button--previous"
             data-lc-slide-previous
             aria-label="Previous featured product"
@@ -192,20 +203,16 @@
   <div class="lc-gummy-runway lc-gummy-runway--hero" aria-hidden="true">
     <div class="lc-gummy-runner">
       <div class="lc-gummy-runner__bounce">
-        <div class="lc-gummy-runner__rig">
-          <span class="lc-gummy-runner__leg lc-gummy-runner__leg--back"></span>
-          <span class="lc-gummy-runner__leg lc-gummy-runner__leg--front"></span>
-          <img
-            class="lc-gummy-runner__sprite"
-            src="{{ 'lilys-logo-bear-chili-clean.png' | asset_url }}"
-            alt=""
-            width="264"
-            height="432"
-            loading="eager"
-            decoding="async"
-            aria-hidden="true"
-          >
-        </div>
+        <img
+          class="lc-gummy-runner__sprite"
+          src="{{ 'lilys-bear-runner-hd.webp' | asset_url }}"
+          alt=""
+          width="610"
+          height="870"
+          loading="eager"
+          decoding="async"
+          aria-hidden="true"
+        >
       </div>
     </div>
   </div>
@@ -248,22 +255,6 @@
       "step": 1,
       "default": 5,
       "label": "Number of slides"
-    },
-    {
-      "type": "checkbox",
-      "id": "slideshow_autoplay",
-      "default": true,
-      "label": "Automatically rotate slides"
-    },
-    {
-      "type": "range",
-      "id": "slideshow_speed",
-      "min": 3,
-      "max": 9,
-      "step": 1,
-      "unit": "s",
-      "default": 6,
-      "label": "Seconds per slide"
     },
     {
       "type": "product",

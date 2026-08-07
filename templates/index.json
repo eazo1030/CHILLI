@@ -8,8 +8,6 @@
         "text": "<p>Bold fruit flavor, tangy chamoy, and a warm chili finish that keeps you coming back for another handful.</p>",
         "slideshow_collection": "new-duo-bundles",
         "slideshow_limit": 5,
-        "slideshow_autoplay": true,
-        "slideshow_speed": 6,
         "product": "chili-sampler",
         "image": "shopify://shop_images/IMG_4189.jpg",
         "primary_label": "Shop best sellers",
@@ -39,6 +37,16 @@
         "show_secondary_image": true,
         "show_rating": true,
         "enable_quick_add": true
+      }
+    },
+    "lilys_editorial": {
+      "type": "lilys-candy-editorial",
+      "settings": {
+        "eyebrow": "PICK YOUR COLOR",
+        "heading": "Big flavor looks <em>this good.</em>",
+        "text": "<p>Colorful fruit candy, a tangy chamoy coating, and the chili finish that makes every bite unmistakably Lily's.</p>",
+        "button_label": "Shop candy belts",
+        "button_link": "shopify://collections/new-duo-bundles"
       }
     },
     "featured_collection": {
@@ -163,6 +171,7 @@
     "lilys_hero",
     "lilys_marquee",
     "lilys_flavor",
+    "lilys_editorial",
     "featured_collection",
     "image_with_text_PgVRwj",
     "17074478967d24ad69",
