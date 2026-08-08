@@ -3,7 +3,17 @@
     "lilys_hero": {
       "type": "lilys-hero",
       "settings": {
-        "heading": "Lily's Chilies — Sweet. Sour. Spicy."
+        "eyebrow": "SWEET • SOUR • SPICY",
+        "heading": "The candy aisle just got <em>hotter.</em>",
+        "text": "<p>Bold fruit flavor, tangy chamoy, and a warm chili finish that keeps you coming back for another handful.</p>",
+        "slideshow_collection": "new-duo-bundles",
+        "slideshow_limit": 5,
+        "product": "chili-sampler",
+        "image": "shopify://shop_images/IMG_4189.jpg",
+        "primary_label": "Shop best sellers",
+        "primary_link": "shopify://collections/new-duo-bundles",
+        "secondary_label": "Explore every flavor",
+        "secondary_link": "#lilys-flavors"
       }
     },
     "lilys_marquee": {
