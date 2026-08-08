@@ -14,7 +14,7 @@
   assign slide_3_peach = all_products['chili-peach-gummies-two-pack-4oz']
 -%}
 
-<section class="lc-hero lc-hero--graphic" aria-labelledby="LcHeroHeading-{{ section.id }}">
+<section class="lc-hero lc-hero--graphic lc-hero-2026-08-08" aria-labelledby="LcHeroHeading-{{ section.id }}">
   <h1 class="visually-hidden" id="LcHeroHeading-{{ section.id }}">{{ section.settings.heading | default: 'Lily\'s Chilies — Sweet. Sour. Spicy.' | strip_html }}</h1>
 
   <div
@@ -159,7 +159,7 @@
 
 {% schema %}
 {
-  "name": "Lily's graphic hero",
+  "name": "Lily graphic hero v2",
   "tag": "section",
   "class": "section section--lilys-hero",
   "settings": [
