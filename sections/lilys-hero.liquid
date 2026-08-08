@@ -40,7 +40,7 @@
           loading="eager"
           fetchpriority="high"
         >
-        <div class="lc-hero__hotspots" aria-hidden="{% if slide_1_product == blank and slide_1_sour == blank and slide_1_watermelon == blank %}true{% else %}false{% endif %}">
+        <div class="lc-hero__hotspots" aria-hidden="{% if slide_1_product == blank and slide_1_sour == blank and slide_1_watermelon == blank %} true {% else %} false {% endif %}">
           {%- if slide_1_product != blank -%}
             <a class="lc-hero__hotspot" href="{{ slide_1_product.url }}" style="left:53.1%;top:13.9%;width:25.8%;height:42.4%;">
               <span class="visually-hidden">Shop {{ slide_1_product.title | escape }}</span>
@@ -74,7 +74,7 @@
           height="720"
           loading="lazy"
         >
-        <div class="lc-hero__hotspots" aria-hidden="{% if slide_2_blueberry == blank and slide_2_mango == blank and slide_2_apple == blank and slide_2_strawberry == blank %}true{% else %}false{% endif %}">
+        <div class="lc-hero__hotspots" aria-hidden="{% if slide_2_blueberry == blank and slide_2_mango == blank and slide_2_apple == blank and slide_2_strawberry == blank %} true {% else %} false {% endif %}">
           {%- if slide_2_blueberry != blank -%}
             <a class="lc-hero__hotspot" href="{{ slide_2_blueberry.url }}" style="left:4.7%;top:29.2%;width:21.1%;height:36.1%;">
               <span class="visually-hidden">Shop {{ slide_2_blueberry.title | escape }}</span>
@@ -113,7 +113,7 @@
           height="720"
           loading="lazy"
         >
-        <div class="lc-hero__hotspots" aria-hidden="{% if slide_3_mango == blank and slide_3_plum == blank and slide_3_peach == blank %}true{% else %}false{% endif %}">
+        <div class="lc-hero__hotspots" aria-hidden="{% if slide_3_mango == blank and slide_3_plum == blank and slide_3_peach == blank %} true {% else %} false {% endif %}">
           {%- if slide_3_mango != blank -%}
             <a class="lc-hero__hotspot" href="{{ slide_3_mango.url }}" style="left:5.5%;top:13.2%;width:20.3%;height:41.7%;">
               <span class="visually-hidden">Shop {{ slide_3_mango.title | escape }}</span>
